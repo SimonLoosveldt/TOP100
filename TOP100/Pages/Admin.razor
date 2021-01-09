@@ -1,0 +1,100 @@
+﻿@page "/admin"
+@using FrontendLogic
+
+<div class="main">
+    <div class="middleContent">
+
+        <div class="top_middleContent">
+            <h2>@pageTitle</h2>
+
+            @*<div class="page_nav">
+                    <ul>
+                        <li>
+                            <span>
+                                <a href="#"><img src="img/arrow_left_white_18dp.png" alt="Vorige pagina" style="width:24px;height:24px;"></a>
+                            </span>
+                        </li>
+                        <li>
+                            <span>
+                                <a href="#"><img src="img/arrow_right_white_18dp.png" alt="Volgende pagina" style="width:24px;height:24px;"></a>
+                            </span>
+                        </li>
+                    </ul>
+                </div>*@
+        </div>
+
+        <div class="content_middleContent">
+
+            <div class="left_content">
+                <div class="squares_wrapper">
+                    <div class="tile" id="square">
+                        <p id="title">INZENDINGEN</p>
+                        <p id="result">@SubmissionEntries</p>
+                    </div>
+
+                    <div class="tile" id="square">
+                        <p id="title">VOLTOOID</p>
+                        <p id="result">@CompletedEntries</p>
+                    </div>
+
+                    <div class="tile" id="square">
+                        <p id="title">VERSCHILLENDE NUMMERS</p>
+                        <p id="result">@DifferentSongs</p>
+                    </div>
+
+                    <div class="tile" id="square">
+                        <p id="title">NON-SPOTIFY</p>
+                        <p id="result">@NonSpotifySongs</p>
+                    </div>
+                </div>
+
+                <!--
+                    <div class="manual_wrapper">
+                        <div class="tile" id="manual_rect">
+                            <p id="title">MANUAL ENTRIES</p>
+                            <p id="content">Doe maar Dave - Fuifje</p>
+                            <p id="content">Monsta - Holdin' On (Skrillex & Nero Remix)</p>
+                            <p id="content">Omar Duro - Huts A Lady</p>
+                            <p id="content">Marek Hemmann - Zunder</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="right_content">
+                    <div class="user_wrapper">
+                        <div class="tile" id="users_rect">
+                            <p id="title">USERS</p>
+                            <div id="contentUsers">
+                                <p>Simon Loosveldt</p>
+                                <p>Michel Michels</p>
+                                <p>Simon Loosveldt</p>
+                            </div>
+                        </div>
+                    </div>
+                        -->
+            </div>
+
+        </div>
+    </div>
+</div>
+
+@code {
+    private AdminDataHandler adminDataHandler;
+
+    public string pageTitle { get; set; } = "ADMINPANEL";
+
+    public int SubmissionEntries { get; set; } = 0;
+    public int CompletedEntries { get; set; } = 0;
+    public int DifferentSongs { get; set; } = 0;
+    public int NonSpotifySongs { get; set; } = 0;
+
+    protected override void OnInitialized()
+    {
+        adminDataHandler = new AdminDataHandler();
+
+        SubmissionEntries = adminDataHandler.GetSubmissionEntries();
+        CompletedEntries = adminDataHandler.GetCompletedEntries();
+        DifferentSongs = adminDataHandler.GetCountTracks();
+        NonSpotifySongs = adminDataHandler.GetNonSpotifyTracks();
+    }
+}

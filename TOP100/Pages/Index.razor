@@ -1,0 +1,74 @@
+﻿@page "/"
+@page "/home"
+@using Services
+@inject IAccountService accountService
+@inject NavigationManager NavigationManager
+
+<div class="sidebar">
+    <SideNav />
+</div>
+
+<div class="main">
+    <div class="middleContent">
+
+        <div class="top_middleContent">
+            <h2>@pageTitle</h2>
+        </div>
+
+        <div class="content_middleContent">
+            <p>
+                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur sagittis feugiat semper. Integer commodo lobortis felis id elementum. Nullam lobortis tincidunt justo et dictum. Curabitur semper augue lorem, a scelerisque diam finibus a. Nam vitae tempor neque. Maecenas et erat convallis, facilisis lectus nec, tincidunt sapien. Vestibulum et ante commodo, dictum tellus vestibulum, varius nibh.<br />
+                Nulla ut ligula lectus. Donec iaculis ex vitae neque fringilla scelerisque a ac sapien. Donec egestas aliquam lorem eu placerat. Etiam in erat id turpis dapibus aliquet. Proin a eros consectetur, fringilla massa sed, convallis erat. Pellentesque ut tortor sit amet lectus porttitor volutpat. Nam velit nisl, rutrum in ullamcorper vitae, aliquet vitae quam. Suspendisse non semper massa, sit amet semper sem. Donec ac tortor vehicula, facilisis sapien non, scelerisque neque. Nam laoreet, massa nec pellentesque rhoncus, metus enim fermentum nunc, in venenatis erat enim quis massa.
+            </p>
+
+            <h3>Uitleg</h3>
+            <ul id="align_ver">
+                <li>
+                    <ul id="align_hor">
+                        <li class="add_button" id="demo_button">
+                            <span>
+                                <img src="img/add_black_36dp.png" alt="Manueel een nummer toevoegen" style="width:24px;height:24px;">
+                            </span>
+                        </li>
+                        <li>Manueel een nummer toevoegen aan de lijst, nummer niet te vinden op Spotify.</li>
+                    </ul>
+                </li>
+                <li>
+                    <ul id="align_hor">
+                        <li class="nav_button" id="demo_button">
+                            <span>
+                                <img src="img/arrow_right_white_18dp.png" alt="Vorige pagina" style="width:24px;height:24px;">
+                            </span>
+                        </li>
+                        <li>Volgende pagina, volgende 10 nummers ingeven.</li>
+                    </ul>
+                </li>
+                <li>
+                    <ul id="align_hor">
+                        <li class="warning" id="demo_button">
+                            <span>
+                                <img src="img/warning_white.png" alt="Opgelet!" style="width:35px;height:35px;">
+                            </span>
+                        </li>
+                        <li>Vergeet niet van telkens op te slaan alvorens naar een volgende pagina te gaan!</li>
+                    </ul>
+                </li>
+            </ul>
+        </div>
+    </div>
+</div>
+
+@code {
+    public string pageTitle { get; set; } = "INFO";
+
+    protected override void OnInitialized()
+    {
+        if (accountService.loggedInUser == null) HandleNotLoggedIn();
+    }
+
+    public void HandleNotLoggedIn()
+    {
+        NavigationManager.NavigateTo("/login", true);
+    }
+
+}

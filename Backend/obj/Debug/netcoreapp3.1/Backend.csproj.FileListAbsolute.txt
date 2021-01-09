@@ -1,0 +1,12 @@
+C:\Users\loosv\source\repos\2021pop-simonloosveldt\Backend\bin\Debug\netcoreapp3.1\Backend.deps.json
+C:\Users\loosv\source\repos\2021pop-simonloosveldt\Backend\bin\Debug\netcoreapp3.1\Backend.runtimeconfig.json
+C:\Users\loosv\source\repos\2021pop-simonloosveldt\Backend\bin\Debug\netcoreapp3.1\Backend.runtimeconfig.dev.json
+C:\Users\loosv\source\repos\2021pop-simonloosveldt\Backend\bin\Debug\netcoreapp3.1\Backend.dll
+C:\Users\loosv\source\repos\2021pop-simonloosveldt\Backend\bin\Debug\netcoreapp3.1\Backend.pdb
+C:\Users\loosv\source\repos\2021pop-simonloosveldt\Backend\obj\Debug\netcoreapp3.1\Backend.csprojAssemblyReference.cache
+C:\Users\loosv\source\repos\2021pop-simonloosveldt\Backend\obj\Debug\netcoreapp3.1\Backend.AssemblyInfoInputs.cache
+C:\Users\loosv\source\repos\2021pop-simonloosveldt\Backend\obj\Debug\netcoreapp3.1\Backend.AssemblyInfo.cs
+C:\Users\loosv\source\repos\2021pop-simonloosveldt\Backend\obj\Debug\netcoreapp3.1\Backend.csproj.CoreCompileInputs.cache
+C:\Users\loosv\source\repos\2021pop-simonloosveldt\Backend\obj\Debug\netcoreapp3.1\Backend.dll
+C:\Users\loosv\source\repos\2021pop-simonloosveldt\Backend\obj\Debug\netcoreapp3.1\Backend.pdb
+C:\Users\loosv\source\repos\2021pop-simonloosveldt\Backend\obj\Debug\netcoreapp3.1\Backend.genruntimeconfig.cache

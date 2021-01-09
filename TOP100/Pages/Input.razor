@@ -1,0 +1,106 @@
+﻿@page "/input/{param}"
+@using FrontendLogic
+@using Services
+@using ViewModels
+@inject NavigationManager NavigationManager
+@inject IAccountService accountService
+
+<div class="sidebar">
+    <SideNav />
+</div>
+
+<div class="main">
+    <div class="middleContent">
+
+        <div class="top_middleContent">
+            <h2>@pageTitle</h2>
+        </div>
+
+        <div class="content_middleContent">
+
+            @for (int index = UpperLimit; index >= LowerLimit; index--)
+            {
+                var currentListEntry = userListEntries.Single(x => x.Points == index);
+                <div class="inputCard" id="input_@index">
+                    <div class="rankingNumber">
+                        <h3>@index</h3>
+                    </div>
+
+                    <div class="albumCover">
+                        <span>
+                            <img src="img/music_black_48dp.png" alt="album icoon">
+                        </span>
+                    </div>
+                    <div class="inputFields">
+
+                        <span id="input_artist"><input type="text" placeholder="ARTIST" @bind="@currentListEntry.Artist"></span>
+
+
+                        <span id="input_title"><input type="text" placeholder="TITLE" @bind="@currentListEntry.Title"></span>
+
+                    </div>
+                </div>
+            }
+
+            <input type="button" @bind="save_button" @onclick="UpdateDatabase" />
+
+        </div>
+    </div>
+</div>
+
+
+@code {
+    public InputHandler inputHandler { get; set; }
+
+    public string pageTitle { get; set; } = "TOP100";
+
+    [Parameter]
+    public string Param { get; set; }
+
+    public int UpperLimit { get; set; }
+    public int LowerLimit { get; set; }
+
+    public string save_button { get; set; } = "SAVE";
+
+    public List<ListEntryViewModel> userListEntries;
+
+
+    protected override void OnInitialized()
+    {
+        if (accountService.loggedInUser == null) HandleNotLoggedIn();
+
+        this.inputHandler = new InputHandler();
+
+        string[] partsArray = Param.Split('_');
+
+        UpperLimit = Int32.Parse(partsArray[0]);
+        LowerLimit = Int32.Parse(partsArray[1]);
+
+        userListEntries = inputHandler.GetPreviousData(accountService.loggedInUser, UpperLimit, LowerLimit);
+
+        //Task<Timer> timedSync = InitializeAndStartTimer();
+
+        //InitializeAndStartTimer();
+
+    }
+
+    private async void UpdateDatabase(/*Object source, ElapsedEventArgs e*/)
+    {
+        save_button = "PRESSED";
+        inputHandler.UpdateDatabase(accountService.loggedInUser, userListEntries);
+
+    }
+
+    public void HandleNotLoggedIn()
+    {
+        NavigationManager.NavigateTo("/login", true);
+    }
+
+    //public void InitializeAndStartTimer()
+    //{
+    //    Timer t = new Timer(60000);
+    //    t.AutoReset = true;
+    //    t.Elapsed += new ElapsedEventHandler(UpdateDatabase);
+    //    t.Start();
+    //}
+}

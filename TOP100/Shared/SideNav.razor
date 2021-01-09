@@ -1,0 +1,91 @@
+﻿@using Services
+@using Globals
+@inject NavigationManager NavigationManager
+@inject IAccountService AccountService
+
+<div class="header_side">
+    @if (loggedInUser != null)
+    {
+        <p>Welkom, @loggedInUser.Firstname</p>
+        <div class="logOutButton">
+            <button type="button" @onclick="LogOutPressed">Uitloggen</button>
+        </div>
+    }
+    else
+    {
+        <div class="logOutButton">
+            <button type="button" @onclick="LogInPressed">Inloggen</button>
+        </div>
+    }
+</div>
+
+<div class="content_side">
+    <ul>
+        <li>
+            <NavLink class="nav-link" href="" Match="NavLinkMatch.All" @onclick="(() => HandlePageChange(hrefStringHome))">
+                <span>INFO</span>
+            </NavLink>
+        </li>
+
+        <li>
+            <NavLink class="nav-link" href="/input/100_91" Match="NavLinkMatch.All" @onclick="(() => HandlePageChange(hrefString100))">
+                <span>100 - 91</span>
+            </NavLink>
+        </li>
+
+        @for (int i = 91; i > 1; i -= 10)
+        {
+            int lowerLimit = i - 10;
+            string hrefString = $"/input/{i - 1}_{lowerLimit}";
+            string viewString = $"{i - 1} - {lowerLimit}";
+
+            <li>
+                <NavLink class="nav-link" href="@hrefString" Match="NavLinkMatch.All" @onclick="(() => HandlePageChange(hrefString))">
+                    <span>@viewString</span>
+                </NavLink>
+            </li>
+        }
+
+    </ul>
+</div>
+
+<div class="footer_side">
+    <p>&copy; Created by Simon Loosveldt</p>
+
+    <ul>
+        <li><a href="https://github.com/simonLoosveldt"><img src="img/github_white.png" alt="Link naar Github Simon Loosveldt" style="width:32px;height:32px;"></a></li>
+        <li><a href="https://www.linkedin.com/in/simon-loosveldt-14b0781aa/"><img src="img/linkedin_white.png" alt="Link naar LinkedIn Simon Loosveldt" style="width:32px;height:32px;"></a></li>
+        <li><a href="https://www.messenger.com/t/simon.loosveldt"><img src="img/messenger_white.png" alt="Link naar Messenger Simon Loosveldt" style="width:32px;height:32px;"></a></li>
+    </ul>
+</div>
+
+@code {
+
+
+    public string hrefString100 { get; } = "/input/100_91";
+    public string hrefStringHome { get; } = "/home";
+
+    public User loggedInUser { get; set; }
+
+    protected override void OnInitialized()
+    {
+        loggedInUser = AccountService.loggedInUser;
+
+    }
+
+    public void LogInPressed()
+    {
+        NavigationManager.NavigateTo("/login", true);
+    }
+
+    public void LogOutPressed()
+    {
+        AccountService.Logout();
+        NavigationManager.NavigateTo("/login", true);
+    }
+
+    public void HandlePageChange(string hrefString)
+    {
+        NavigationManager.NavigateTo(hrefString, true);
+    }
+}

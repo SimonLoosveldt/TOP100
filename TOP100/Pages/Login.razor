@@ -1,0 +1,103 @@
+﻿@page "/login"
+@using FrontendLogic
+@using Services
+@using Globals
+@inject IAccountService accountService
+@inject IErrorService errorService
+@inject NavigationManager NavigationManager
+@inject IJSRuntime JSRuntime
+
+<div class="main">
+    <div class="middleContent">
+
+        <div class="top_middleContent">
+            <h2>@pageTitle</h2>
+        </div>
+
+        <div class="content">
+            <span>
+                <label>Firstname</label>
+                <input type="text" @bind="@inputFirstname" placeholder="Firstname">
+            </span>
+            <span>
+                <label>Lastname </label>
+                <input type="text" @bind="@inputLastname" placeholder="Lastname">
+            </span>
+
+            @if (!String.IsNullOrEmpty(errorService.ErrorMessage))
+            {
+                LaunchPopUp("Please fill in all fields...");
+            }
+
+            <span>
+                <input type="button" id="login_button" @bind="login_button" @onclick="LoginPressed" />
+            </span>
+        </div>
+    </div>
+</div>
+
+@code {
+
+    private string pageTitle { get; set; } = "AANMELDEN";
+
+    public LoginHandler loginHandler { get; set; }
+
+    private string login_button { get; set; } = "LOGIN";
+
+    private string inputFirstname { get; set; } = string.Empty;
+    public string inputLastname { get; set; } = string.Empty;
+
+    public User firstUser { get; set; }
+
+    protected override void OnInitialized()
+    {
+        loginHandler = new LoginHandler();
+        firstUser = loginHandler.GetFirstUserFromDb();
+
+    }
+
+    public void LoginPressed()
+    {
+        if (!InputFilledCheck())
+        {
+            errorService.ChangeMessage("Please fill all inputfields...");
+        }
+        else
+        {
+
+            if (loginHandler.validator(inputFirstname, inputLastname).Item1)
+            {
+                accountService.Login(loginHandler.validator(inputFirstname, inputLastname).Item2);
+                Redirect();
+            }
+            else
+            {
+                LaunchPopUp("Unrecognized user...");
+                //errorService.ChangeMessage("Unrecognized user...");
+            }
+        }
+    }
+
+    public bool InputFilledCheck()
+    {
+        if (String.IsNullOrEmpty(inputFirstname) || String.IsNullOrEmpty(inputLastname))
+        {
+            return false;
+        }
+        else
+        {
+            return true;
+        }
+    }
+
+    public void Redirect()
+    {
+        NavigationManager.NavigateTo("/", true);
+    }
+
+    private async Task LaunchPopUp(string message)    // https://blazor-university.com/javascript-interop/
+    {
+        await JSRuntime.InvokeVoidAsync("alert", message);
+    }
+
+}
