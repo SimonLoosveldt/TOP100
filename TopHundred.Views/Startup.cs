@@ -3,6 +3,7 @@ using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
+using TopHundred.Controllers.Services;
 using TopHundred.Views.Services;
 
 namespace TopHundred.Views
@@ -23,6 +24,7 @@ namespace TopHundred.Views
             services.AddRazorPages();
             services.AddServerSideBlazor();
             services.AddSingleton<IAccountService, AccountService>();
+            services.AddSingleton<IUserService, UserService>();
             services.AddSingleton<IErrorService, ErrorService>();
         }
 

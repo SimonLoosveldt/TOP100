@@ -1,9 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Threading.Tasks;
-using TopHundred.Models;
 using TopHundred.Controllers;
+using TopHundred.Models;
 using TopHundred.Views.ViewModels;
 
 namespace TopHundred.Views.FrontendLogic
@@ -52,12 +51,12 @@ namespace TopHundred.Views.FrontendLogic
             }
         }
 
-        public List<ListEntryViewModel> GetPreviousData(User user, int upperlimit, int lowerlimit)
+        public List<ListEntryViewModel> GetPreviousData(User user, int upperLimit, int lowerLimit)
         {
             var previousDataSample = new List<ListEntryViewModel>();
             var allListEntries = InputParser.GetAllListEntriesFromUser(user);
 
-            for(int i = lowerlimit; i <= upperlimit; i++)
+            for(int i = lowerLimit; i <= upperLimit; i++)
             {
                 try
                 {

@@ -1,7 +1,7 @@
 ﻿@page "/"
 @page "/home"
-@using Services
-@inject IAccountService accountService
+@using TopHundred.Controllers.Services
+@inject IUserService userService 
 @inject NavigationManager NavigationManager
 
 <div class="sidebar">
@@ -12,7 +12,7 @@
     <div class="middleContent">
 
         <div class="top_middleContent">
-            <h2>@pageTitle</h2>
+            <h2>@PageTitle</h2>
         </div>
 
         <div class="content_middleContent">
@@ -59,16 +59,20 @@
 </div>
 
 @code {
-    public string pageTitle { get; set; } = "INFO";
+    private readonly string loginPath = "/login";
 
-    protected override void OnInitialized()
-    {
-        if (accountService.LoggedInUser == null) HandleNotLoggedIn();
-    }
+    public string PageTitle { get; set; } = "INFO";
 
     public void HandleNotLoggedIn()
     {
-        NavigationManager.NavigateTo("/login", true);
+        NavigationManager.NavigateTo(loginPath, true);
     }
 
+    protected override void OnInitialized()
+    {
+        if (!userService.IsLoggedIn())
+        {
+            HandleNotLoggedIn();
+        }
+    }
 }

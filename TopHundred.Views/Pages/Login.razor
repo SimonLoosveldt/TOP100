@@ -2,7 +2,9 @@
 @using TopHundred.Views.FrontendLogic
 @using TopHundred.Views.Services
 @using TopHundred.Models
+@using TopHundred.Controllers.Services
 @inject IAccountService accountService
+@inject IUserService userService 
 @inject IErrorService errorService
 @inject NavigationManager NavigationManager
 @inject IJSRuntime JSRuntime
@@ -84,7 +86,8 @@
 
             if (loginHandler.Validate(InputFirstName, InputLastname).Item1)
             {
-                accountService.Login(loginHandler.Validate(InputFirstName, InputLastname).Item2);
+                userService.Login(loginHandler.Validate(InputFirstName, InputLastname).Item2);
+                //accountService.Login();
                 Redirect();
             }
             else

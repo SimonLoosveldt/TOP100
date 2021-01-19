@@ -1,7 +1,7 @@
-﻿@using TopHundred.Views.Services
+﻿@using TopHundred.Controllers.Services
 @using TopHundred.Models
 @inject NavigationManager NavigationManager
-@inject IAccountService AccountService
+@inject IUserService UserService
 
 <div class="header_side">
     @if (LoggedInUser != null)
@@ -22,13 +22,13 @@
 <div class="content_side">
     <ul>
         <li>
-            <NavLink class="nav-link" href="" Match="NavLinkMatch.All" @onclick="(() => HandlePageChange(HomePath))">
+            <NavLink class="nav-link" href="" Match="NavLinkMatch.All" @onclick="(() => HandlePageChange(homePath))">
                 <span>INFO</span>
             </NavLink>
         </li>
 
         <li>
-            <NavLink class="nav-link" href="/input/100_91" Match="NavLinkMatch.All" @onclick="(() => HandlePageChange(EditListPath))">
+            <NavLink class="nav-link" href="/input/100_91" Match="NavLinkMatch.All" @onclick="(() => HandlePageChange(inputHomePath))">
                 <span>100 - 91</span>
             </NavLink>
         </li>
@@ -61,29 +61,31 @@
 
 @code {
 
+    private readonly string inputHomePath = "/input/100_91";
+    private readonly string homePath = "/home";
+    private readonly string loginPath = "/login";
+
     // Properties
-    public string EditListPath { get; } = "/input/100_91";
-    public string HomePath { get; } = "/home";
     public User LoggedInUser { get; set; }
 
     // Public
     public void LogInPressed()
     {
-        NavigationManager.NavigateTo("/login", true);
+        HandlePageChange(loginPath);
     }
     public void LogOutPressed()
     {
-        AccountService.Logout();
-        NavigationManager.NavigateTo("/login", true);
+        UserService.Logout();
+        HandlePageChange(loginPath);
     }
-    public void HandlePageChange(string hrefString)
+    public void HandlePageChange(string path)
     {
-        NavigationManager.NavigateTo(hrefString, true);
+        NavigationManager.NavigateTo(path, true);
     }
 
     // Protected
     protected override void OnInitialized()
     {
-        LoggedInUser = AccountService.LoggedInUser;
+        LoggedInUser = UserService.GetCurrentUser();
     }
 }

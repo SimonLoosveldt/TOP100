@@ -1,12 +1,10 @@
 ﻿@page "/input/{param}"
+@using TopHundred.Controllers.Services
 @using TopHundred.Views.FrontendLogic
-@using TopHundred.Views.Services
 @using TopHundred.Views.ViewModels
 @using System.Threading
 @inject NavigationManager NavigationManager
-@inject IAccountService accountService
-@inject UpdateService updateService
-
+@inject IUserService UserService
 <div class="sidebar">
     <SideNav />
 </div>
@@ -15,7 +13,7 @@
     <div class="middleContent">
 
         <div class="top_middleContent">
-            <h2>@pageTitle</h2>
+            <h2>@PageTitle</h2>
         </div>
 
         <div class="content_middleContent">
@@ -44,7 +42,7 @@
                 </div>
             }
 
-            <input type="button" @bind="save_button" @onclick="UpdateDatabase" />
+            <input type="button" @bind="SaveButtonLabel" @onclick="UpdateDatabase" />
 
         </div>
     </div>
@@ -52,57 +50,57 @@
 
 
 @code {
-    public static InputHandler inputHandler { get; set; } = new InputHandler();
+    private static InputHandler inputHandler;
 
-    public string pageTitle { get; set; } = "TOP100";
+    private readonly string loginPath = "/login";
 
     [Parameter]
     public string Param { get; set; }
 
+    public string PageTitle { get; set; } = "TOP100";
     public int UpperLimit { get; set; }
     public int LowerLimit { get; set; }
-
-    public string save_button { get; set; } = "SAVE";
+    public string SaveButtonLabel { get; set; } = "SAVE";
 
     public static List<ListEntryViewModel> userListEntries { get; set; }
 
-
     protected override void OnInitialized()
     {
-        if (accountService.LoggedInUser == null) HandleNotLoggedIn();
+        if (!UserService.IsLoggedIn())
+        {
+            HandleNotLoggedIn();
+        }
 
-        string[] partsArray = Param.Split('_');
+        inputHandler = new InputHandler();
 
-        UpperLimit = Int32.Parse(partsArray[0]);
-        LowerLimit = Int32.Parse(partsArray[1]);
+        var boundaries = Param.Split('_');
 
-        userListEntries = inputHandler.GetPreviousData(accountService.LoggedInUser, UpperLimit, LowerLimit);
+        UpperLimit = int.Parse(boundaries[0]);
+        LowerLimit = int.Parse(boundaries[1]);
+
+        userListEntries = inputHandler.GetPreviousData(UserService.GetCurrentUser(), UpperLimit, LowerLimit);
 
         Thread syncThread = new Thread(SyncToDatabase);
         syncThread.Start();
-
     }
 
     private void UpdateDatabase()
     {
-        save_button = "PRESSED";
-        inputHandler.UpdateDatabase(accountService.LoggedInUser, userListEntries);
-
+        SaveButtonLabel = "PRESSED";
+        inputHandler.UpdateDatabase(UserService.GetCurrentUser(), userListEntries);
     }
 
     public void HandleNotLoggedIn()
     {
-        NavigationManager.NavigateTo("/login", true);
+        NavigationManager.NavigateTo(loginPath, true);
     }
 
     static void SyncToDatabase(Object obj)
     {
         var autoEvent = new AutoResetEvent(false);
-        var updateService = new UpdateService(inputHandler, userListEntries);
+        //var updateService = new UpdateService(inputHandler, userListEntries);
 
         Console.WriteLine($"{DateTime.Now.ToString("HH:mm:ss.fff")} --> Creating timer...");
-        var stateTimer = new Timer(updateService.Update, autoEvent, 30000, 60000);
-
+        //var stateTimer = new Timer(updateService.Update, autoEvent, 30000, 60000);
     }
-
 }
