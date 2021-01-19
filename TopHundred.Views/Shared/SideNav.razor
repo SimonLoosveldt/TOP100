@@ -1,12 +1,12 @@
-﻿@using Services
-@using Models
+﻿@using TopHundred.Views.Services
+@using TopHundred.Models
 @inject NavigationManager NavigationManager
 @inject IAccountService AccountService
 
 <div class="header_side">
-    @if (loggedInUser != null)
+    @if (LoggedInUser != null)
     {
-        <p>Welkom, @loggedInUser.Firstname</p>
+        <p>Welkom, @LoggedInUser.Firstname</p>
         <div class="logOutButton">
             <button type="button" @onclick="LogOutPressed">Uitloggen</button>
         </div>
@@ -22,13 +22,13 @@
 <div class="content_side">
     <ul>
         <li>
-            <NavLink class="nav-link" href="" Match="NavLinkMatch.All" @onclick="(() => HandlePageChange(hrefStringHome))">
+            <NavLink class="nav-link" href="" Match="NavLinkMatch.All" @onclick="(() => HandlePageChange(HomePath))">
                 <span>INFO</span>
             </NavLink>
         </li>
 
         <li>
-            <NavLink class="nav-link" href="/input/100_91" Match="NavLinkMatch.All" @onclick="(() => HandlePageChange(hrefString100))">
+            <NavLink class="nav-link" href="/input/100_91" Match="NavLinkMatch.All" @onclick="(() => HandlePageChange(EditListPath))">
                 <span>100 - 91</span>
             </NavLink>
         </li>
@@ -36,12 +36,12 @@
         @for (int i = 91; i > 1; i -= 10)
         {
             int lowerLimit = i - 10;
-            string hrefString = $"/input/{i - 1}_{lowerLimit}";
-            string viewString = $"{i - 1} - {lowerLimit}";
+            var nextPath = $"/input/{i - 1}_{lowerLimit}";
+            var nextPathTitle = $"{i - 1} - {lowerLimit}";
 
             <li>
-                <NavLink class="nav-link" href="@hrefString" Match="NavLinkMatch.All" @onclick="(() => HandlePageChange(hrefString))">
-                    <span>@viewString</span>
+                <NavLink class="nav-link" href="@nextPath" Match="NavLinkMatch.All" @onclick="(() => HandlePageChange(nextPath))">
+                    <span>@nextPathTitle</span>
                 </NavLink>
             </li>
         }
@@ -61,31 +61,29 @@
 
 @code {
 
+    // Properties
+    public string EditListPath { get; } = "/input/100_91";
+    public string HomePath { get; } = "/home";
+    public User LoggedInUser { get; set; }
 
-    public string hrefString100 { get; } = "/input/100_91";
-    public string hrefStringHome { get; } = "/home";
-
-    public User loggedInUser { get; set; }
-
-    protected override void OnInitialized()
-    {
-        loggedInUser = AccountService.LoggedInUser;
-
-    }
-
+    // Public
     public void LogInPressed()
     {
         NavigationManager.NavigateTo("/login", true);
     }
-
     public void LogOutPressed()
     {
         AccountService.Logout();
         NavigationManager.NavigateTo("/login", true);
     }
-
     public void HandlePageChange(string hrefString)
     {
         NavigationManager.NavigateTo(hrefString, true);
+    }
+
+    // Protected
+    protected override void OnInitialized()
+    {
+        LoggedInUser = AccountService.LoggedInUser;
     }
 }

@@ -1,22 +1,12 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-
-namespace TopHundred.Views.Services
+﻿namespace TopHundred.Views.Services
 {
     public class ErrorService : IErrorService
     {
         public string ErrorMessage { get; private set; }
 
-        public ErrorService()
+        public void ChangeMessage(string message)
         {
-
-        }
-
-        public void ChangeMessage(string msg)
-        {
-            ErrorMessage = msg;
+            ErrorMessage = message;
         }
 
         public void DeleteMessage()

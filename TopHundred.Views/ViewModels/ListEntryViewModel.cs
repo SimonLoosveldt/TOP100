@@ -36,6 +36,11 @@ namespace TopHundred.Views.ViewModels
             set => SetProperty(ref _title, value); 
         }
 
+        public override string ToString()
+        {
+            return $"{Points}: {Artist} - {Title}";
+        }
+
         protected override void OnPropertyChanged([CallerMemberName] string propertyName = null)
         {
             switch(propertyName)
@@ -45,14 +50,8 @@ namespace TopHundred.Views.ViewModels
                     Debug.WriteLine(this);
                     break;
             }
+
             base.OnPropertyChanged(propertyName);
         }
-
-        public override string ToString()
-        {
-            return $"{Points}: {Artist} - {Title}";
-        }
-
-
     }
 }

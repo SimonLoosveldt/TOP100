@@ -37,11 +37,11 @@ namespace TopHundred.Dev
                 Console.WriteLine(track.ToString());
             }
 
-            //var arnaud = new User("Arnaud", "Bogaert", "1114741073");
-            //Console.WriteLine("\n<------------------------------------------>\n\tAddUser()\n< ------------------------------------------>\n");
-            //Console.WriteLine($"User to add: {arnaud}");
-            //userParser.AddUser(arnaud);
-            //Console.WriteLine("--> OK");
+            var arnaud = new User("Arnaud", "Bogaert", "1114741073");
+            Console.WriteLine("\n<------------------------------------------>\n\tAddUser()\n< ------------------------------------------>\n");
+            Console.WriteLine($"User to add: {arnaud}");
+            userParser.AddUser(arnaud);
+            Console.WriteLine("--> OK");
 
             var allListEntries = listEntryParser.GetAllListEntries();
             Console.WriteLine("\n<------------------------------------------>\n\tGetAllListEntries()\n<------------------------------------------>\n");

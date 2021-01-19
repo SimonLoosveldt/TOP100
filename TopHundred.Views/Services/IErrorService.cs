@@ -4,7 +4,7 @@
     {
         string ErrorMessage { get; }
 
-        void ChangeMessage(string msg);
+        void ChangeMessage(string message);
         void DeleteMessage();
     }
 }
