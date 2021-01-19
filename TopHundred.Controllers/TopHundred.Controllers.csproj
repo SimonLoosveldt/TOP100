@@ -1,9 +1,7 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
-    <OutputType>Exe</OutputType>
     <TargetFramework>net5.0</TargetFramework>
-    <AssemblyName>TopHundred.Dev</AssemblyName>
   </PropertyGroup>
 
   <ItemGroup>
@@ -21,8 +19,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\Globals\TopHundred.Models.csproj" />
-    <ProjectReference Include="..\Logic\TopHundred.Controllers.csproj" />
+    <ProjectReference Include="..\TopHundred.Models\TopHundred.Models.csproj" />
   </ItemGroup>
 
 </Project>

@@ -5,11 +5,11 @@ VisualStudioVersion = 16.0.30711.63
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TopHundred.Views", "TopHundred.Views.csproj", "{D9D4F36D-41D9-4817-99B9-A1034AC09607}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TopHundred.Models", "..\Globals\TopHundred.Models.csproj", "{DCF5BD5B-1E6E-47C1-906A-8919B25C32F0}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TopHundred.Models", "..\TopHundred.Models\TopHundred.Models.csproj", "{DCF5BD5B-1E6E-47C1-906A-8919B25C32F0}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TopHundred.Controllers", "..\Logic\TopHundred.Controllers.csproj", "{3D761971-EEDD-4FC6-B826-62189FD57093}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TopHundred.Controllers", "..\TopHundred.Controllers\TopHundred.Controllers.csproj", "{3D761971-EEDD-4FC6-B826-62189FD57093}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TopHundred.Dev", "..\ConsoleTestForDB\TopHundred.Dev.csproj", "{0D9E7A98-8946-404A-AC2E-C27C51BC832C}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TopHundred.Dev", "..\TopHundred.Dev\TopHundred.Dev.csproj", "{0D9E7A98-8946-404A-AC2E-C27C51BC832C}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
