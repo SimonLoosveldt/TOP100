@@ -2,8 +2,10 @@
 @using FrontendLogic
 @using Services
 @using ViewModels
+@using System.Threading
 @inject NavigationManager NavigationManager
 @inject IAccountService accountService
+@inject UpdateService updateService
 
 <div class="sidebar">
     <SideNav />
@@ -50,7 +52,7 @@
 
 
 @code {
-    public InputHandler inputHandler { get; set; }
+    public static InputHandler inputHandler { get; set; } = new InputHandler();
 
     public string pageTitle { get; set; } = "TOP100";
 
@@ -62,14 +64,12 @@
 
     public string save_button { get; set; } = "SAVE";
 
-    public List<ListEntryViewModel> userListEntries;
+    public static List<ListEntryViewModel> userListEntries { get; set; }
 
 
     protected override void OnInitialized()
     {
         if (accountService.loggedInUser == null) HandleNotLoggedIn();
-
-        this.inputHandler = new InputHandler();
 
         string[] partsArray = Param.Split('_');
 
@@ -78,13 +78,12 @@
 
         userListEntries = inputHandler.GetPreviousData(accountService.loggedInUser, UpperLimit, LowerLimit);
 
-        //Task<Timer> timedSync = InitializeAndStartTimer();
-
-        //InitializeAndStartTimer();
+        Thread syncThread = new Thread(SyncToDatabase);
+        syncThread.Start();
 
     }
 
-    private async void UpdateDatabase(/*Object source, ElapsedEventArgs e*/)
+    private void UpdateDatabase()
     {
         save_button = "PRESSED";
         inputHandler.UpdateDatabase(accountService.loggedInUser, userListEntries);
@@ -96,11 +95,14 @@
         NavigationManager.NavigateTo("/login", true);
     }
 
-    //public void InitializeAndStartTimer()
-    //{
-    //    Timer t = new Timer(60000);
-    //    t.AutoReset = true;
-    //    t.Elapsed += new ElapsedEventHandler(UpdateDatabase);
-    //    t.Start();
-    //}
+    static void SyncToDatabase(Object obj)
+    {
+        var autoEvent = new AutoResetEvent(false);
+        var updateService = new UpdateService(inputHandler, userListEntries);
+
+        Console.WriteLine($"{DateTime.Now.ToString("HH:mm:ss.fff")} --> Creating timer...");
+        var stateTimer = new Timer(updateService.Update, autoEvent, 30000, 60000);
+
+    }
+
 }

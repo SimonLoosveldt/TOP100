@@ -1,6 +1,5 @@
-﻿using Backend;
-using Globals;
-using Logic;
+﻿using Models;
+using Controllers;
 using System;
 
 namespace ConsoleTestForDB

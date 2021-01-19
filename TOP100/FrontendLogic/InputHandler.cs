@@ -2,8 +2,8 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-using Globals;
-using Logic;
+using Models;
+using Controllers;
 using TOP100.ViewModels;
 
 namespace TOP100.FrontendLogic

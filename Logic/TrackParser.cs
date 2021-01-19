@@ -1,5 +1,4 @@
-﻿using Backend;
-using Globals;
+﻿using Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -7,7 +6,7 @@ using System.Text;
 using System.Threading.Tasks;
 using Microsoft.EntityFrameworkCore;
 
-namespace Logic
+namespace Controllers
 {
     public class TrackParser
     {

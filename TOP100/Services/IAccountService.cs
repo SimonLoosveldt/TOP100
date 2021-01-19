@@ -1,4 +1,4 @@
-﻿using Globals;
+﻿using Models;
 
 namespace TOP100.Services
 {

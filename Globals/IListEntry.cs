@@ -1,4 +1,4 @@
-﻿namespace Globals
+﻿namespace Models
 {
     public interface IListEntry
     {

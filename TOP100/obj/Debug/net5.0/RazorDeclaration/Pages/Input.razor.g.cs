@@ -13,99 +13,106 @@ namespace TOP100.Pages
     using System.Threading.Tasks;
     using Microsoft.AspNetCore.Components;
 #nullable restore
-#line 1 "C:\Users\loosv\source\repos\2021pop-simonloosveldt\TOP100\_Imports.razor"
+#line 1 "C:\Users\loosv\source\repos\Github\TOP100\TOP100\_Imports.razor"
 using System.Net.Http;
 
 #line default
 #line hidden
 #nullable disable
 #nullable restore
-#line 2 "C:\Users\loosv\source\repos\2021pop-simonloosveldt\TOP100\_Imports.razor"
+#line 2 "C:\Users\loosv\source\repos\Github\TOP100\TOP100\_Imports.razor"
 using Microsoft.AspNetCore.Authorization;
 
 #line default
 #line hidden
 #nullable disable
 #nullable restore
-#line 3 "C:\Users\loosv\source\repos\2021pop-simonloosveldt\TOP100\_Imports.razor"
+#line 3 "C:\Users\loosv\source\repos\Github\TOP100\TOP100\_Imports.razor"
 using Microsoft.AspNetCore.Components.Authorization;
 
 #line default
 #line hidden
 #nullable disable
 #nullable restore
-#line 4 "C:\Users\loosv\source\repos\2021pop-simonloosveldt\TOP100\_Imports.razor"
+#line 4 "C:\Users\loosv\source\repos\Github\TOP100\TOP100\_Imports.razor"
 using Microsoft.AspNetCore.Components.Forms;
 
 #line default
 #line hidden
 #nullable disable
 #nullable restore
-#line 5 "C:\Users\loosv\source\repos\2021pop-simonloosveldt\TOP100\_Imports.razor"
+#line 5 "C:\Users\loosv\source\repos\Github\TOP100\TOP100\_Imports.razor"
 using Microsoft.AspNetCore.Components.Routing;
 
 #line default
 #line hidden
 #nullable disable
 #nullable restore
-#line 6 "C:\Users\loosv\source\repos\2021pop-simonloosveldt\TOP100\_Imports.razor"
+#line 6 "C:\Users\loosv\source\repos\Github\TOP100\TOP100\_Imports.razor"
 using Microsoft.AspNetCore.Components.Web;
 
 #line default
 #line hidden
 #nullable disable
 #nullable restore
-#line 7 "C:\Users\loosv\source\repos\2021pop-simonloosveldt\TOP100\_Imports.razor"
+#line 7 "C:\Users\loosv\source\repos\Github\TOP100\TOP100\_Imports.razor"
 using Microsoft.AspNetCore.Components.Web.Virtualization;
 
 #line default
 #line hidden
 #nullable disable
 #nullable restore
-#line 8 "C:\Users\loosv\source\repos\2021pop-simonloosveldt\TOP100\_Imports.razor"
+#line 8 "C:\Users\loosv\source\repos\Github\TOP100\TOP100\_Imports.razor"
 using Microsoft.JSInterop;
 
 #line default
 #line hidden
 #nullable disable
 #nullable restore
-#line 9 "C:\Users\loosv\source\repos\2021pop-simonloosveldt\TOP100\_Imports.razor"
+#line 9 "C:\Users\loosv\source\repos\Github\TOP100\TOP100\_Imports.razor"
 using TOP100;
 
 #line default
 #line hidden
 #nullable disable
 #nullable restore
-#line 10 "C:\Users\loosv\source\repos\2021pop-simonloosveldt\TOP100\_Imports.razor"
+#line 10 "C:\Users\loosv\source\repos\Github\TOP100\TOP100\_Imports.razor"
 using TOP100.Shared;
 
 #line default
 #line hidden
 #nullable disable
 #nullable restore
-#line 11 "C:\Users\loosv\source\repos\2021pop-simonloosveldt\TOP100\_Imports.razor"
+#line 11 "C:\Users\loosv\source\repos\Github\TOP100\TOP100\_Imports.razor"
 using TOP100.Pages;
 
 #line default
 #line hidden
 #nullable disable
 #nullable restore
-#line 2 "C:\Users\loosv\source\repos\2021pop-simonloosveldt\TOP100\Pages\Input.razor"
+#line 2 "C:\Users\loosv\source\repos\Github\TOP100\TOP100\Pages\Input.razor"
 using FrontendLogic;
 
 #line default
 #line hidden
 #nullable disable
 #nullable restore
-#line 3 "C:\Users\loosv\source\repos\2021pop-simonloosveldt\TOP100\Pages\Input.razor"
+#line 3 "C:\Users\loosv\source\repos\Github\TOP100\TOP100\Pages\Input.razor"
 using Services;
 
 #line default
 #line hidden
 #nullable disable
 #nullable restore
-#line 4 "C:\Users\loosv\source\repos\2021pop-simonloosveldt\TOP100\Pages\Input.razor"
+#line 4 "C:\Users\loosv\source\repos\Github\TOP100\TOP100\Pages\Input.razor"
 using ViewModels;
+
+#line default
+#line hidden
+#nullable disable
+#nullable restore
+#line 5 "C:\Users\loosv\source\repos\Github\TOP100\TOP100\Pages\Input.razor"
+using System.Threading;
 
 #line default
 #line hidden
@@ -119,9 +126,9 @@ using ViewModels;
         }
         #pragma warning restore 1998
 #nullable restore
-#line 52 "C:\Users\loosv\source\repos\2021pop-simonloosveldt\TOP100\Pages\Input.razor"
+#line 54 "C:\Users\loosv\source\repos\Github\TOP100\TOP100\Pages\Input.razor"
        
-    public InputHandler inputHandler { get; set; }
+    public static InputHandler inputHandler { get; set; } = new InputHandler();
 
     public string pageTitle { get; set; } = "TOP100";
 
@@ -133,14 +140,12 @@ using ViewModels;
 
     public string save_button { get; set; } = "SAVE";
 
-    public List<ListEntryViewModel> userListEntries;
+    public static List<ListEntryViewModel> userListEntries { get; set; }
 
 
     protected override void OnInitialized()
     {
         if (accountService.loggedInUser == null) HandleNotLoggedIn();
-
-        this.inputHandler = new InputHandler();
 
         string[] partsArray = Param.Split('_');
 
@@ -149,13 +154,12 @@ using ViewModels;
 
         userListEntries = inputHandler.GetPreviousData(accountService.loggedInUser, UpperLimit, LowerLimit);
 
-        //Task<Timer> timedSync = InitializeAndStartTimer();
-
-        //InitializeAndStartTimer();
+        Thread syncThread = new Thread(SyncToDatabase);
+        syncThread.Start();
 
     }
 
-    private async void UpdateDatabase(/*Object source, ElapsedEventArgs e*/)
+    private void UpdateDatabase()
     {
         save_button = "PRESSED";
         inputHandler.UpdateDatabase(accountService.loggedInUser, userListEntries);
@@ -167,17 +171,21 @@ using ViewModels;
         NavigationManager.NavigateTo("/login", true);
     }
 
-    //public void InitializeAndStartTimer()
-    //{
-    //    Timer t = new Timer(60000);
-    //    t.AutoReset = true;
-    //    t.Elapsed += new ElapsedEventHandler(UpdateDatabase);
-    //    t.Start();
-    //}
+    static void SyncToDatabase(Object obj)
+    {
+        var autoEvent = new AutoResetEvent(false);
+        var updateService = new UpdateService(inputHandler, userListEntries);
+
+        Console.WriteLine($"{DateTime.Now.ToString("HH:mm:ss.fff")} --> Creating timer...");
+        var stateTimer = new Timer(updateService.Update, autoEvent, 30000, 60000);
+
+    }
+
 
 #line default
 #line hidden
 #nullable disable
+        [global::Microsoft.AspNetCore.Components.InjectAttribute] private UpdateService updateService { get; set; }
         [global::Microsoft.AspNetCore.Components.InjectAttribute] private IAccountService accountService { get; set; }
         [global::Microsoft.AspNetCore.Components.InjectAttribute] private NavigationManager NavigationManager { get; set; }
     }

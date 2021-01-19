@@ -1,5 +1,5 @@
-﻿using Globals;
-using Logic;
+﻿using Models;
+using Controllers;
 using System;
 using System.Collections.Generic;
 using System.Linq;

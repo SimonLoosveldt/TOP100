@@ -1,97 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\loosv\\source\\repos\\TOP100\\TOP100\\TOP100.csproj": {}
+    "C:\\Users\\loosv\\source\\repos\\Github\\TOP100\\TOP100\\TOP100.csproj": {}
   },
   "projects": {
-    "C:\\Users\\loosv\\source\\repos\\TOP100\\Backend\\Backend.csproj": {
+    "C:\\Users\\loosv\\source\\repos\\Github\\TOP100\\Globals\\Models.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\loosv\\source\\repos\\TOP100\\Backend\\Backend.csproj",
-        "projectName": "Backend",
-        "projectPath": "C:\\Users\\loosv\\source\\repos\\TOP100\\Backend\\Backend.csproj",
+        "projectUniqueName": "C:\\Users\\loosv\\source\\repos\\Github\\TOP100\\Globals\\Models.csproj",
+        "projectName": "Models",
+        "projectPath": "C:\\Users\\loosv\\source\\repos\\Github\\TOP100\\Globals\\Models.csproj",
         "packagesPath": "C:\\Users\\loosv\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\loosv\\source\\repos\\TOP100\\Backend\\obj\\",
-        "projectStyle": "PackageReference",
-        "configFilePaths": [
-          "C:\\Users\\loosv\\AppData\\Roaming\\NuGet\\NuGet.Config",
-          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
-        ],
-        "originalTargetFrameworks": [
-          "net5.0"
-        ],
-        "sources": {
-          "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
-          "https://api.nuget.org/v3/index.json": {}
-        },
-        "frameworks": {
-          "net5.0": {
-            "targetAlias": "net5.0",
-            "projectReferences": {
-              "C:\\Users\\loosv\\source\\repos\\TOP100\\Globals\\Globals.csproj": {
-                "projectPath": "C:\\Users\\loosv\\source\\repos\\TOP100\\Globals\\Globals.csproj"
-              }
-            }
-          }
-        },
-        "warningProperties": {
-          "warnAsError": [
-            "NU1605"
-          ]
-        }
-      },
-      "frameworks": {
-        "net5.0": {
-          "targetAlias": "net5.0",
-          "dependencies": {
-            "Microsoft.EntityFrameworkCore": {
-              "target": "Package",
-              "version": "[5.0.1, )"
-            },
-            "Microsoft.EntityFrameworkCore.Design": {
-              "include": "Runtime, Build, Native, ContentFiles, Analyzers, BuildTransitive",
-              "suppressParent": "All",
-              "target": "Package",
-              "version": "[5.0.1, )"
-            },
-            "Microsoft.EntityFrameworkCore.SqlServer": {
-              "target": "Package",
-              "version": "[5.0.1, )"
-            },
-            "Microsoft.EntityFrameworkCore.Tools": {
-              "include": "Runtime, Build, Native, ContentFiles, Analyzers, BuildTransitive",
-              "suppressParent": "All",
-              "target": "Package",
-              "version": "[5.0.1, )"
-            }
-          },
-          "imports": [
-            "net461",
-            "net462",
-            "net47",
-            "net471",
-            "net472",
-            "net48"
-          ],
-          "assetTargetFallback": true,
-          "warn": true,
-          "frameworkReferences": {
-            "Microsoft.NETCore.App": {
-              "privateAssets": "all"
-            }
-          },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\5.0.101\\RuntimeIdentifierGraph.json"
-        }
-      }
-    },
-    "C:\\Users\\loosv\\source\\repos\\TOP100\\Globals\\Globals.csproj": {
-      "version": "1.0.0",
-      "restore": {
-        "projectUniqueName": "C:\\Users\\loosv\\source\\repos\\TOP100\\Globals\\Globals.csproj",
-        "projectName": "Globals",
-        "projectPath": "C:\\Users\\loosv\\source\\repos\\TOP100\\Globals\\Globals.csproj",
-        "packagesPath": "C:\\Users\\loosv\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\loosv\\source\\repos\\TOP100\\Globals\\obj\\",
+        "outputPath": "C:\\Users\\loosv\\source\\repos\\Github\\TOP100\\Globals\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\loosv\\AppData\\Roaming\\NuGet\\NuGet.Config",
@@ -122,23 +42,27 @@
           "dependencies": {
             "Microsoft.EntityFrameworkCore": {
               "target": "Package",
-              "version": "[5.0.1, )"
+              "version": "[5.0.2, )"
             },
             "Microsoft.EntityFrameworkCore.Design": {
               "include": "Runtime, Build, Native, ContentFiles, Analyzers, BuildTransitive",
               "suppressParent": "All",
               "target": "Package",
-              "version": "[5.0.1, )"
+              "version": "[5.0.2, )"
+            },
+            "Microsoft.EntityFrameworkCore.Proxies": {
+              "target": "Package",
+              "version": "[5.0.2, )"
             },
             "Microsoft.EntityFrameworkCore.SqlServer": {
               "target": "Package",
-              "version": "[5.0.1, )"
+              "version": "[5.0.2, )"
             },
             "Microsoft.EntityFrameworkCore.Tools": {
               "include": "Runtime, Build, Native, ContentFiles, Analyzers, BuildTransitive",
               "suppressParent": "All",
               "target": "Package",
-              "version": "[5.0.1, )"
+              "version": "[5.0.2, )"
             }
           },
           "imports": [
@@ -160,14 +84,14 @@
         }
       }
     },
-    "C:\\Users\\loosv\\source\\repos\\TOP100\\Logic\\Logic.csproj": {
+    "C:\\Users\\loosv\\source\\repos\\Github\\TOP100\\Logic\\Controllers.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\loosv\\source\\repos\\TOP100\\Logic\\Logic.csproj",
-        "projectName": "Logic",
-        "projectPath": "C:\\Users\\loosv\\source\\repos\\TOP100\\Logic\\Logic.csproj",
+        "projectUniqueName": "C:\\Users\\loosv\\source\\repos\\Github\\TOP100\\Logic\\Controllers.csproj",
+        "projectName": "Controllers",
+        "projectPath": "C:\\Users\\loosv\\source\\repos\\Github\\TOP100\\Logic\\Controllers.csproj",
         "packagesPath": "C:\\Users\\loosv\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\loosv\\source\\repos\\TOP100\\Logic\\obj\\",
+        "outputPath": "C:\\Users\\loosv\\source\\repos\\Github\\TOP100\\Logic\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\loosv\\AppData\\Roaming\\NuGet\\NuGet.Config",
@@ -184,11 +108,8 @@
           "net5.0": {
             "targetAlias": "net5.0",
             "projectReferences": {
-              "C:\\Users\\loosv\\source\\repos\\TOP100\\Backend\\Backend.csproj": {
-                "projectPath": "C:\\Users\\loosv\\source\\repos\\TOP100\\Backend\\Backend.csproj"
-              },
-              "C:\\Users\\loosv\\source\\repos\\TOP100\\Globals\\Globals.csproj": {
-                "projectPath": "C:\\Users\\loosv\\source\\repos\\TOP100\\Globals\\Globals.csproj"
+              "C:\\Users\\loosv\\source\\repos\\Github\\TOP100\\Globals\\Models.csproj": {
+                "projectPath": "C:\\Users\\loosv\\source\\repos\\Github\\TOP100\\Globals\\Models.csproj"
               }
             }
           }
@@ -205,23 +126,27 @@
           "dependencies": {
             "Microsoft.EntityFrameworkCore": {
               "target": "Package",
-              "version": "[5.0.1, )"
+              "version": "[5.0.2, )"
             },
             "Microsoft.EntityFrameworkCore.Design": {
               "include": "Runtime, Build, Native, ContentFiles, Analyzers, BuildTransitive",
               "suppressParent": "All",
               "target": "Package",
-              "version": "[5.0.1, )"
+              "version": "[5.0.2, )"
+            },
+            "Microsoft.EntityFrameworkCore.Proxies": {
+              "target": "Package",
+              "version": "[5.0.2, )"
             },
             "Microsoft.EntityFrameworkCore.SqlServer": {
               "target": "Package",
-              "version": "[5.0.1, )"
+              "version": "[5.0.2, )"
             },
             "Microsoft.EntityFrameworkCore.Tools": {
               "include": "Runtime, Build, Native, ContentFiles, Analyzers, BuildTransitive",
               "suppressParent": "All",
               "target": "Package",
-              "version": "[5.0.1, )"
+              "version": "[5.0.2, )"
             }
           },
           "imports": [
@@ -243,14 +168,14 @@
         }
       }
     },
-    "C:\\Users\\loosv\\source\\repos\\TOP100\\TOP100\\TOP100.csproj": {
+    "C:\\Users\\loosv\\source\\repos\\Github\\TOP100\\TOP100\\TOP100.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\loosv\\source\\repos\\TOP100\\TOP100\\TOP100.csproj",
+        "projectUniqueName": "C:\\Users\\loosv\\source\\repos\\Github\\TOP100\\TOP100\\TOP100.csproj",
         "projectName": "TOP100",
-        "projectPath": "C:\\Users\\loosv\\source\\repos\\TOP100\\TOP100\\TOP100.csproj",
+        "projectPath": "C:\\Users\\loosv\\source\\repos\\Github\\TOP100\\TOP100\\TOP100.csproj",
         "packagesPath": "C:\\Users\\loosv\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\loosv\\source\\repos\\TOP100\\TOP100\\obj\\",
+        "outputPath": "C:\\Users\\loosv\\source\\repos\\Github\\TOP100\\TOP100\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\loosv\\AppData\\Roaming\\NuGet\\NuGet.Config",
@@ -267,14 +192,11 @@
           "net5.0": {
             "targetAlias": "net5.0",
             "projectReferences": {
-              "C:\\Users\\loosv\\source\\repos\\TOP100\\Backend\\Backend.csproj": {
-                "projectPath": "C:\\Users\\loosv\\source\\repos\\TOP100\\Backend\\Backend.csproj"
+              "C:\\Users\\loosv\\source\\repos\\Github\\TOP100\\Globals\\Models.csproj": {
+                "projectPath": "C:\\Users\\loosv\\source\\repos\\Github\\TOP100\\Globals\\Models.csproj"
               },
-              "C:\\Users\\loosv\\source\\repos\\TOP100\\Globals\\Globals.csproj": {
-                "projectPath": "C:\\Users\\loosv\\source\\repos\\TOP100\\Globals\\Globals.csproj"
-              },
-              "C:\\Users\\loosv\\source\\repos\\TOP100\\Logic\\Logic.csproj": {
-                "projectPath": "C:\\Users\\loosv\\source\\repos\\TOP100\\Logic\\Logic.csproj"
+              "C:\\Users\\loosv\\source\\repos\\Github\\TOP100\\Logic\\Controllers.csproj": {
+                "projectPath": "C:\\Users\\loosv\\source\\repos\\Github\\TOP100\\Logic\\Controllers.csproj"
               }
             }
           }
@@ -295,27 +217,27 @@
             },
             "Microsoft.EntityFrameworkCore": {
               "target": "Package",
-              "version": "[5.0.1, )"
+              "version": "[5.0.2, )"
             },
             "Microsoft.EntityFrameworkCore.Design": {
               "include": "Runtime, Build, Native, ContentFiles, Analyzers, BuildTransitive",
               "suppressParent": "All",
               "target": "Package",
-              "version": "[5.0.1, )"
+              "version": "[5.0.2, )"
             },
             "Microsoft.EntityFrameworkCore.Proxies": {
               "target": "Package",
-              "version": "[5.0.1, )"
+              "version": "[5.0.2, )"
             },
             "Microsoft.EntityFrameworkCore.SqlServer": {
               "target": "Package",
-              "version": "[5.0.1, )"
+              "version": "[5.0.2, )"
             },
             "Microsoft.EntityFrameworkCore.Tools": {
               "include": "Runtime, Build, Native, ContentFiles, Analyzers, BuildTransitive",
               "suppressParent": "All",
               "target": "Package",
-              "version": "[5.0.1, )"
+              "version": "[5.0.2, )"
             }
           },
           "imports": [
