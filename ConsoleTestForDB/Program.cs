@@ -2,7 +2,7 @@
 using TopHundred.Controllers;
 using System;
 
-namespace ConsoleTestForDB
+namespace TopHundred.Dev
 {
     class Program
     {

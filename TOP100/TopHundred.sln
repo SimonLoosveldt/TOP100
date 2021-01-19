@@ -9,7 +9,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TopHundred.Models", "..\Glo
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TopHundred.Controllers", "..\Logic\TopHundred.Controllers.csproj", "{3D761971-EEDD-4FC6-B826-62189FD57093}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ConsoleTestForDB", "..\ConsoleTestForDB\ConsoleTestForDB.csproj", "{0D9E7A98-8946-404A-AC2E-C27C51BC832C}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TopHundred.Dev", "..\ConsoleTestForDB\TopHundred.Dev.csproj", "{0D9E7A98-8946-404A-AC2E-C27C51BC832C}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
