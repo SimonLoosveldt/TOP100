@@ -1,4 +1,4 @@
-﻿namespace Models
+﻿namespace TopHundred.Models
 {
     public interface IListEntry
     {

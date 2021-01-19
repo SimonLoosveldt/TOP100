@@ -7,7 +7,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace TOP100
+namespace TopHundred.Views
 {
     public class Program
     {

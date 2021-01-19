@@ -1,6 +1,6 @@
-﻿using Models;
+﻿using TopHundred.Models;
 
-namespace TOP100.Services
+namespace TopHundred.Views.Services
 {
     public interface IAccountService
     {

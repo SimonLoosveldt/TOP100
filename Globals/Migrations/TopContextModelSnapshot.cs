@@ -4,9 +4,9 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
-using Models;
+using TopHundred.Models;
 
-namespace Models.Migrations
+namespace TopHundred.Models.Migrations
 {
     [DbContext(typeof(TopContext))]
     partial class TopContextModelSnapshot : ModelSnapshot

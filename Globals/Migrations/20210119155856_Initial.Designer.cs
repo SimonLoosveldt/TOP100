@@ -5,9 +5,9 @@ using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
 using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
-using Models;
+using TopHundred.Models;
 
-namespace Models.Migrations
+namespace TopHundred.Models.Migrations
 {
     [DbContext(typeof(TopContext))]
     [Migration("20210119155856_Initial")]
@@ -21,7 +21,7 @@ namespace Models.Migrations
                 .HasAnnotation("Relational:MaxIdentifierLength", 128)
                 .HasAnnotation("ProductVersion", "5.0.2");
 
-            modelBuilder.Entity("Models.Artist", b =>
+            modelBuilder.Entity("TopHundred.Models.Artist", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -46,7 +46,7 @@ namespace Models.Migrations
                     b.ToTable("Artists");
                 });
 
-            modelBuilder.Entity("Models.ListEntry", b =>
+            modelBuilder.Entity("TopHundred.Models.ListEntry", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -74,7 +74,7 @@ namespace Models.Migrations
                     b.ToTable("ListEntries");
                 });
 
-            modelBuilder.Entity("Models.ReleaseDateInfo", b =>
+            modelBuilder.Entity("TopHundred.Models.ReleaseDateInfo", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -94,7 +94,7 @@ namespace Models.Migrations
                     b.ToTable("ReleaseDateInfos");
                 });
 
-            modelBuilder.Entity("Models.Track", b =>
+            modelBuilder.Entity("TopHundred.Models.Track", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -128,7 +128,7 @@ namespace Models.Migrations
                     b.ToTable("Tracks");
                 });
 
-            modelBuilder.Entity("Models.User", b =>
+            modelBuilder.Entity("TopHundred.Models.User", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -155,15 +155,15 @@ namespace Models.Migrations
                     b.ToTable("Users");
                 });
 
-            modelBuilder.Entity("Models.ListEntry", b =>
+            modelBuilder.Entity("TopHundred.Models.ListEntry", b =>
                 {
-                    b.HasOne("Models.Track", "Track")
+                    b.HasOne("TopHundred.Models.Track", "Track")
                         .WithMany("ListEntries")
                         .HasForeignKey("TrackId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("Models.User", "User")
+                    b.HasOne("TopHundred.Models.User", "User")
                         .WithMany("ListEntries")
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade)
@@ -174,37 +174,37 @@ namespace Models.Migrations
                     b.Navigation("User");
                 });
 
-            modelBuilder.Entity("Models.Track", b =>
+            modelBuilder.Entity("TopHundred.Models.Track", b =>
                 {
-                    b.HasOne("Models.Artist", "Artist")
+                    b.HasOne("TopHundred.Models.Artist", "Artist")
                         .WithMany("Tracks")
                         .HasForeignKey("ArtistId");
 
-                    b.HasOne("Models.ReleaseDateInfo", "ReleaseDate")
+                    b.HasOne("TopHundred.Models.ReleaseDateInfo", "ReleaseDate")
                         .WithOne("Track")
-                        .HasForeignKey("Models.Track", "ReleaseDateInfo");
+                        .HasForeignKey("TopHundred.Models.Track", "ReleaseDateInfo");
 
                     b.Navigation("Artist");
 
                     b.Navigation("ReleaseDate");
                 });
 
-            modelBuilder.Entity("Models.Artist", b =>
+            modelBuilder.Entity("TopHundred.Models.Artist", b =>
                 {
                     b.Navigation("Tracks");
                 });
 
-            modelBuilder.Entity("Models.ReleaseDateInfo", b =>
+            modelBuilder.Entity("TopHundred.Models.ReleaseDateInfo", b =>
                 {
                     b.Navigation("Track");
                 });
 
-            modelBuilder.Entity("Models.Track", b =>
+            modelBuilder.Entity("TopHundred.Models.Track", b =>
                 {
                     b.Navigation("ListEntries");
                 });
 
-            modelBuilder.Entity("Models.User", b =>
+            modelBuilder.Entity("TopHundred.Models.User", b =>
                 {
                     b.Navigation("ListEntries");
                 });

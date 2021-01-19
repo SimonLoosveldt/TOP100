@@ -1,4 +1,4 @@
-﻿using Models;
+﻿using TopHundred.Models;
 using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
@@ -6,7 +6,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Controllers
+namespace TopHundred.Controllers
 {
     public class InputParser
     {

@@ -1,4 +1,4 @@
-﻿using Models;
+﻿using TopHundred.Models;
 using Microsoft.AspNetCore.Components;
 using System;
 using System.Collections.Generic;
@@ -6,7 +6,7 @@ using System.ComponentModel.Design;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace TOP100.Services
+namespace TopHundred.Views.Services
 {
     public class AccountService : IAccountService
     {

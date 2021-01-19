@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace TOP100.Services
+namespace TopHundred.Views.Services
 {
     public class ErrorService : IErrorService
     {

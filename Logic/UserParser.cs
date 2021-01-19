@@ -1,10 +1,10 @@
-﻿using Models;
+﻿using TopHundred.Models;
 using System.Collections.Generic;
 using System.Linq;
 using Microsoft.EntityFrameworkCore;
 using System;
 
-namespace Controllers
+namespace TopHundred.Controllers
 {
     public class UserParser
     {

@@ -1,12 +1,9 @@
-﻿using Models;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using TOP100.FrontendLogic;
-using TOP100.ViewModels;
+﻿using System.Collections.Generic;
+using TopHundred.Models;
+using TopHundred.Views.FrontendLogic;
+using TopHundred.Views.ViewModels;
 
-namespace TOP100.Services
+namespace TopHundred.Views.Services
 {
     public class ListEntryViewModelService : IListEntryViewModelService
     {

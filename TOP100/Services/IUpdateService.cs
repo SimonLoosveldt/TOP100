@@ -1,4 +1,4 @@
-﻿namespace TOP100.Services
+﻿namespace TopHundred.Views.Services
 {
     public interface IUpdateService
     {

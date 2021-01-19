@@ -1,8 +1,8 @@
-﻿using Models;
+﻿using TopHundred.Models;
 using System.Collections.Generic;
-using TOP100.ViewModels;
+using TopHundred.Views.ViewModels;
 
-namespace TOP100.Services
+namespace TopHundred.Views.Services
 {
     public interface IListEntryViewModelService
     {

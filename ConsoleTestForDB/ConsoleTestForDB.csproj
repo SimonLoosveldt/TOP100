@@ -20,8 +20,8 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\Globals\Models.csproj" />
-    <ProjectReference Include="..\Logic\Controllers.csproj" />
+    <ProjectReference Include="..\Globals\TopHundred.Models.csproj" />
+    <ProjectReference Include="..\Logic\TopHundred.Controllers.csproj" />
   </ItemGroup>
 
 </Project>

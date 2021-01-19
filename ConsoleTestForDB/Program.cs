@@ -1,5 +1,5 @@
-﻿using Models;
-using Controllers;
+﻿using TopHundred.Models;
+using TopHundred.Controllers;
 using System;
 
 namespace ConsoleTestForDB

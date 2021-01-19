@@ -1,6 +1,6 @@
 ﻿using System.Collections.Generic;
 
-namespace Models
+namespace TopHundred.Models
 {
     public interface IUser
     {

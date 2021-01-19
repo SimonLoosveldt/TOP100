@@ -1,7 +1,7 @@
-﻿using Models;
+﻿using TopHundred.Models;
 using Microsoft.EntityFrameworkCore;
 
-namespace Models
+namespace TopHundred.Models
 {
     public class TopContext : DbContext
     {

@@ -2,11 +2,11 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-using Models;
-using Controllers;
-using TOP100.ViewModels;
+using TopHundred.Models;
+using TopHundred.Controllers;
+using TopHundred.Views.ViewModels;
 
-namespace TOP100.FrontendLogic
+namespace TopHundred.Views.FrontendLogic
 {
     public class InputHandler
     {
