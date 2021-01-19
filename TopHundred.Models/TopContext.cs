@@ -1,5 +1,4 @@
-﻿using TopHundred.Models;
-using Microsoft.EntityFrameworkCore;
+﻿using Microsoft.EntityFrameworkCore;
 
 namespace TopHundred.Models
 {

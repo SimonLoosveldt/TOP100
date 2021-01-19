@@ -7,7 +7,7 @@ namespace TopHundred.Views.Services
 {
     public class ListEntryViewModelService : IListEntryViewModelService
     {
-        private InputHandler inputHandler;
+        private readonly InputHandler inputHandler;
 
         public List<ListEntryViewModel> ListEntryViewModels { get; set; }
 

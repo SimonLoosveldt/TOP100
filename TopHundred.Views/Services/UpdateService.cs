@@ -10,22 +10,20 @@ namespace TopHundred.Views.Services
 {
     public class UpdateService : IUpdateService
     {
-        private InputHandler InputHandler { get; set; }
+        private readonly InputHandler inputHandler;
         private List<ListEntryViewModel> ListEntries { get; set; }
         public int Count { get; set; } = 0;
 
         public UpdateService(InputHandler inputHandler, List<ListEntryViewModel> listEntries)
         {
-            this.InputHandler = inputHandler;
+            this.inputHandler = inputHandler;
             this.ListEntries = listEntries;
         }
 
         public void Update(Object stateinfo)
         {
-
-            AutoResetEvent autoEvent = (AutoResetEvent)stateinfo;
-            Console.WriteLine($"{Count}: Updating database @{DateTime.Now.ToString("HH:mm:ss.fff")}");
+            //AutoResetEvent autoEvent = (AutoResetEvent)stateinfo;
+            Console.WriteLine($"{Count}: Updating database @{DateTime.Now:HH:mm:ss.fff}");
         }
-
     }
 }

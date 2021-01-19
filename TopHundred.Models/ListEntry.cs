@@ -40,7 +40,7 @@ namespace TopHundred.Models
 
         public override string ToString()
         {
-            return $"{User.ToString()} gives {Points} points to {Track.ToString()}.";
+            return $"{User} gives {Points} points to {Track}.";
         }
     }
 }

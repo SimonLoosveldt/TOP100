@@ -69,14 +69,14 @@
 
     protected override void OnInitialized()
     {
-        if (accountService.loggedInUser == null) HandleNotLoggedIn();
+        if (accountService.LoggedInUser == null) HandleNotLoggedIn();
 
         string[] partsArray = Param.Split('_');
 
         UpperLimit = Int32.Parse(partsArray[0]);
         LowerLimit = Int32.Parse(partsArray[1]);
 
-        userListEntries = inputHandler.GetPreviousData(accountService.loggedInUser, UpperLimit, LowerLimit);
+        userListEntries = inputHandler.GetPreviousData(accountService.LoggedInUser, UpperLimit, LowerLimit);
 
         Thread syncThread = new Thread(SyncToDatabase);
         syncThread.Start();
@@ -86,7 +86,7 @@
     private void UpdateDatabase()
     {
         save_button = "PRESSED";
-        inputHandler.UpdateDatabase(accountService.loggedInUser, userListEntries);
+        inputHandler.UpdateDatabase(accountService.LoggedInUser, userListEntries);
 
     }
 

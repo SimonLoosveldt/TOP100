@@ -4,7 +4,7 @@ namespace TopHundred.Views.Services
 {
     public interface IAccountService
     {
-        User loggedInUser { get; }
+        User LoggedInUser { get; }
 
         void Login(User user);
         void Logout();

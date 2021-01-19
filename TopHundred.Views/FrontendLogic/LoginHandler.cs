@@ -21,7 +21,7 @@ namespace TopHundred.Views.FrontendLogic
             return userParser.GetAllUsers().First();
         }
 
-        public Tuple<bool, User> validator(string firstname, string lastname)
+        public Tuple<bool, User> Validate(string firstname, string lastname)
         {
             var userDb = userParser.GetUserByName(firstname.ToLower(), lastname.ToLower());
 

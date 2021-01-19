@@ -10,7 +10,7 @@ namespace TopHundred.Views.Services
 {
     public class AccountService : IAccountService
     {
-        public User loggedInUser { get; private set; }
+        public User LoggedInUser { get; private set; }
 
         public AccountService()
         {
@@ -19,12 +19,12 @@ namespace TopHundred.Views.Services
 
         public void Login(User user)
         {
-            loggedInUser = user;
+            LoggedInUser = user;
         }
 
         public void Logout()
         {
-            loggedInUser = null;
+            LoggedInUser = null;
         }
     }
 }
