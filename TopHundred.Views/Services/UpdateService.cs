@@ -3,20 +3,20 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
-using TopHundred.Views.FrontendLogic;
-using TopHundred.Views.ViewModels;
+using TopHundred.Controllers;
+using TopHundred.Models.ViewModels;
 
 namespace TopHundred.Views.Services
 {
     public class UpdateService : IUpdateService
     {
-        private readonly InputHandler inputHandler;
+        private readonly InputController inputController;
         private List<ListEntryViewModel> ListEntries { get; set; }
         public int Count { get; set; } = 0;
 
-        public UpdateService(InputHandler inputHandler, List<ListEntryViewModel> listEntries)
+        public UpdateService(InputController inputController, List<ListEntryViewModel> listEntries)
         {
-            this.inputHandler = inputHandler;
+            this.inputController = inputController;
             this.ListEntries = listEntries;
         }
 

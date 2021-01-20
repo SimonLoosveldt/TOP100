@@ -1,6 +1,6 @@
 ﻿using TopHundred.Models;
 using System.Collections.Generic;
-using TopHundred.Views.ViewModels;
+using TopHundred.Models.ViewModels;
 
 namespace TopHundred.Views.Services
 {

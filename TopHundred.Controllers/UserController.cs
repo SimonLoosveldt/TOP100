@@ -52,7 +52,7 @@ namespace TopHundred.Controllers
             catch (InvalidOperationException e)
             {
                 throw new UserNotFoundException($"user not found with firstname:{firstname} and lastname:{lastname}", e);
-            }            
+            }         
         }
     }
 }

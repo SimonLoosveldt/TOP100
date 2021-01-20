@@ -5,21 +5,22 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Microsoft.EntityFrameworkCore;
+using TopHundred.Controllers.Exceptions;
 
 namespace TopHundred.Controllers
 {
-    public class TrackParser
+    public class TrackController
     {
         private readonly TopContext db;
 
 
-        public TrackParser()
+        public TrackController()
         {
             this.db = new TopContext();
             db.SaveChanges();
         }
 
-        public TrackParser(TopContext topContext)
+        public TrackController(TopContext topContext)
         {
             this.db = topContext;
             db.SaveChanges();
@@ -58,11 +59,13 @@ namespace TopHundred.Controllers
             { 
                 return db.Tracks.Single(x => x.Title == title && x.Artist.Name == artist);
             } 
-            catch (ArgumentNullException e)
+            catch (InvalidOperationException e)
             {
-                return null;
-            }
+                throw new TrackNotFoundException($"Track not found with title:{title} and artist:{artist}", e); 
+            }  
             
+
+
         }
 
         public Track SearchIfExistElseCreateTrack(string title, Artist artist)

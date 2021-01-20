@@ -4,16 +4,16 @@ using TopHundred.Models;
 
 namespace TopHundred.Controllers
 {
-    public class ArtistParser
+    public class ArtistController
     {
         private readonly TopContext db;
 
-        public ArtistParser()
+        public ArtistController()
         {
             this.db = new TopContext();
         }
 
-        public ArtistParser(TopContext topContext)
+        public ArtistController(TopContext topContext)
         {
             this.db = topContext;
             db.SaveChanges();

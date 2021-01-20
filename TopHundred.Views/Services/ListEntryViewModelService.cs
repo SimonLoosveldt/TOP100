@@ -1,19 +1,19 @@
 ﻿using System.Collections.Generic;
+using TopHundred.Controllers;
 using TopHundred.Models;
-using TopHundred.Views.FrontendLogic;
-using TopHundred.Views.ViewModels;
+using TopHundred.Models.ViewModels;
 
 namespace TopHundred.Views.Services
 {
     public class ListEntryViewModelService : IListEntryViewModelService
     {
-        private readonly InputHandler inputHandler;
+        private readonly InputController inputHandler;
 
         public List<ListEntryViewModel> ListEntryViewModels { get; set; }
 
         public ListEntryViewModelService()
         {
-            inputHandler = new InputHandler();
+            inputHandler = new InputController();
         }
 
         public void SyncWithDatabase(User user)

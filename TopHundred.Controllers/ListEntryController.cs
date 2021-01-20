@@ -7,17 +7,17 @@ using System.Threading.Tasks;
 
 namespace TopHundred.Controllers
 {
-    public class ListEntryParser
+    public class ListEntryController
     {
         private readonly TopContext db;
 
-        public ListEntryParser()
+        public ListEntryController()
         {
             this.db = new TopContext();
             db.SaveChanges();
         }
 
-        public ListEntryParser(TopContext topContext)
+        public ListEntryController(TopContext topContext)
         {
             this.db = topContext;
             db.SaveChanges();

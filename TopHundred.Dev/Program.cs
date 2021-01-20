@@ -12,9 +12,9 @@ namespace TopHundred.Dev
 
             var topContext = new TopContext();
             var userParser = new UserController(topContext);
-            var trackParser = new TrackParser(topContext);
+            var trackParser = new TrackController(topContext);
             //var artistParser = new ArtistParser(topContext);
-            var listEntryParser = new ListEntryParser(topContext);
+            var listEntryParser = new ListEntryController(topContext);
 
             var users = userParser.GetAllUsers();
             Console.WriteLine("\n<------------------------------------------>\n\tGetAllUsers()\n<------------------------------------------>\n");

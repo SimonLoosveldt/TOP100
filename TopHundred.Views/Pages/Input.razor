@@ -1,7 +1,7 @@
 ﻿@page "/input/{param}"
 @using TopHundred.Controllers.Services
-@using TopHundred.Views.FrontendLogic
-@using TopHundred.Views.ViewModels
+@using TopHundred.Controllers
+@using TopHundred.Models.ViewModels
 @using System.Threading
 @inject NavigationManager NavigationManager
 @inject IUserService UserService
@@ -50,7 +50,7 @@
 
 
 @code {
-    private static InputHandler inputHandler;
+    private static InputController inputController;
 
     private readonly string loginPath = "/login";
 
@@ -71,14 +71,14 @@
             HandleNotLoggedIn();
         }
 
-        inputHandler = new InputHandler();
+        inputController = new InputController();
 
         var boundaries = Param.Split('_');
 
         UpperLimit = int.Parse(boundaries[0]);
         LowerLimit = int.Parse(boundaries[1]);
 
-        userListEntries = inputHandler.GetPreviousData(UserService.GetCurrentUser(), UpperLimit, LowerLimit);
+        userListEntries = inputController.GetPreviousData(UserService.GetCurrentUser(), UpperLimit, LowerLimit);
 
         Thread syncThread = new Thread(SyncToDatabase);
         syncThread.Start();
@@ -87,7 +87,7 @@
     private void UpdateDatabase()
     {
         SaveButtonLabel = "PRESSED";
-        inputHandler.UpdateDatabase(UserService.GetCurrentUser(), userListEntries);
+        inputController.UpdateDatabase(UserService.GetCurrentUser(), userListEntries);
     }
 
     public void HandleNotLoggedIn()
