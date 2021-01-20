@@ -1,4 +1,5 @@
 ﻿using TopHundred.Models;
+using TopHundred.Controllers.Exceptions;
 using System.Collections.Generic;
 using System.Linq;
 using Microsoft.EntityFrameworkCore;
@@ -44,7 +45,14 @@ namespace TopHundred.Controllers
 
         public User GetUserByName(string firstname, string lastname)
         {        
-            return db.Users.Single(x => x.Firstname == firstname && x.Lastname == lastname);
+            try
+            {
+                return db.Users.Single(x => x.Firstname == firstname && x.Lastname == lastname);
+            }
+            catch (InvalidOperationException e)
+            {
+                throw new UserNotFoundException($"user not found with firstname:{firstname} and lastname:{lastname}", e);
+            }            
         }
     }
 }

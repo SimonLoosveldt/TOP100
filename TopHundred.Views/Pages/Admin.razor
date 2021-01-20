@@ -1,26 +1,12 @@
 ﻿@page "/admin"
 @using FrontendLogic
+@using TopHundred.Controllers
 
 <div class="main">
     <div class="middleContent">
 
         <div class="top_middleContent">
             <h2>@pageTitle</h2>
-
-            @*<div class="page_nav">
-                    <ul>
-                        <li>
-                            <span>
-                                <a href="#"><img src="img/arrow_left_white_18dp.png" alt="Vorige pagina" style="width:24px;height:24px;"></a>
-                            </span>
-                        </li>
-                        <li>
-                            <span>
-                                <a href="#"><img src="img/arrow_right_white_18dp.png" alt="Volgende pagina" style="width:24px;height:24px;"></a>
-                            </span>
-                        </li>
-                    </ul>
-                </div>*@
         </div>
 
         <div class="content_middleContent">
@@ -79,8 +65,6 @@
 </div>
 
 @code {
-    private AdminDataHandler adminDataHandler;
-
     public string pageTitle { get; set; } = "ADMINPANEL";
 
     public int SubmissionEntries { get; set; } = 0;
@@ -90,11 +74,11 @@
 
     protected override void OnInitialized()
     {
-        adminDataHandler = new AdminDataHandler();
+        var adminController = new AdminController();
 
-        SubmissionEntries = adminDataHandler.GetSubmissionEntries();
-        CompletedEntries = adminDataHandler.GetCompletedEntries();
-        DifferentSongs = adminDataHandler.GetCountTracks();
-        NonSpotifySongs = adminDataHandler.GetNonSpotifyTracks();
+        SubmissionEntries = adminController.GetCountSubmissionEntries();
+        CompletedEntries = adminController.GetCountCompletedEntries();
+        DifferentSongs = adminController.GetCountTracks();
+        NonSpotifySongs = adminController.GetCountNonSpotifyTracks();
     }
 }

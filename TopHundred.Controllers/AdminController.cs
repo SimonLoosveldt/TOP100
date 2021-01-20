@@ -3,12 +3,12 @@ using System.Linq;
 
 namespace TopHundred.Controllers
 {
-    public class AdminDataParser
+    public class AdminController
     {
 
         private readonly TopContext db = new TopContext();
 
-        public AdminDataParser()
+        public AdminController()
         {
 
         }

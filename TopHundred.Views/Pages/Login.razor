@@ -3,6 +3,7 @@
 @using TopHundred.Views.Services
 @using TopHundred.Models
 @using TopHundred.Controllers.Services
+@using TopHundred.Controllers.Exceptions
 @using TopHundred.Controllers
 @inject IAccountService accountService
 @inject IUserService userService
@@ -66,7 +67,7 @@
                 userService.Login(userController.GetUserByName(InputFirstName, InputLastname));
                 Redirect();
             }
-            catch (Exception e)
+            catch (UserNotFoundException)
             {
                 await LaunchPopUp("Unrecognized user...");
             }
