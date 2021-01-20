@@ -6,16 +6,16 @@ using System;
 
 namespace TopHundred.Controllers
 {
-    public class UserParser
+    public class UserController
     {
         private readonly TopContext db;
 
-        public UserParser()
+        public UserController()
         {
             this.db = new TopContext();
         }
 
-        public UserParser(TopContext topContext)
+        public UserController(TopContext topContext)
         {
             this.db = topContext;
         }
@@ -43,16 +43,8 @@ namespace TopHundred.Controllers
         }
 
         public User GetUserByName(string firstname, string lastname)
-        {
-            try
-            {
-                return db.Users.Single(x => x.Firstname == firstname && x.Lastname == lastname);
-            } 
-            catch (Exception e)
-            {
-                return null;
-            }            
+        {        
+            return db.Users.Single(x => x.Firstname == firstname && x.Lastname == lastname);
         }
-
     }
 }

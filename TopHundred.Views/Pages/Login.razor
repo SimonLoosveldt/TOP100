@@ -3,8 +3,9 @@
 @using TopHundred.Views.Services
 @using TopHundred.Models
 @using TopHundred.Controllers.Services
+@using TopHundred.Controllers
 @inject IAccountService accountService
-@inject IUserService userService 
+@inject IUserService userService
 @inject IErrorService errorService
 @inject NavigationManager NavigationManager
 @inject IJSRuntime JSRuntime
@@ -26,11 +27,6 @@
                 <input type="text" @bind="@InputLastname" placeholder="Lastname">
             </span>
 
-            @if (!string.IsNullOrEmpty(errorService.ErrorMessage))
-            {
-                LaunchPopUp("Please fill in all fields...");
-            }
-
             <span>
                 <input type="button" id="login_button" @bind="LoginButtonLabel" @onclick="LoginPressed" />
             </span>
@@ -41,37 +37,18 @@
 @code {
 
     // Private
-    private LoginHandler loginHandler { get; set; }
+    private UserController userController { get; set; }
 
     // Properties
     public string PageTitle { get; set; } = "AANMELDEN";
     public string LoginButtonLabel { get; set; } = "LOGIN";
     public string InputFirstName { get; set; } = string.Empty;
     public string InputLastname { get; set; } = string.Empty;
-    public User FirstUser { get; set; }
-
-    // Public
-    public bool InputFilledCheck()
-    {
-        if (string.IsNullOrEmpty(InputFirstName) || string.IsNullOrEmpty(InputLastname))
-        {
-            return false;
-        }
-        else
-        {
-            return true;
-        }
-    }
-    public void Redirect()
-    {
-        NavigationManager.NavigateTo("/", true);
-    }
 
     // Protected
     protected override void OnInitialized()
     {
-        loginHandler = new LoginHandler();
-        FirstUser = loginHandler.GetFirstUserFromDb();
+        userController = new UserController();
     }
 
     // Private
@@ -79,27 +56,36 @@
     {
         if (!InputFilledCheck())
         {
-            errorService.ChangeMessage("Please fill all inputfields...");
+            await LaunchPopUp("Please fill in all fields...");
         }
         else
         {
 
-            if (loginHandler.Validate(InputFirstName, InputLastname).Item1)
+            try
             {
-                userService.Login(loginHandler.Validate(InputFirstName, InputLastname).Item2);
-                //accountService.Login();
+                userService.Login(userController.GetUserByName(InputFirstName, InputLastname));
                 Redirect();
             }
-            else
+            catch (Exception e)
             {
                 await LaunchPopUp("Unrecognized user...");
-                //errorService.ChangeMessage("Unrecognized user...");
             }
         }
     }
+
     private async Task LaunchPopUp(string message)
     {
         // https://blazor-university.com/javascript-interop/
-        await JSRuntime.InvokeVoidAsync("alert", message);      
+        await JSRuntime.InvokeVoidAsync("alert", message);
+    }
+
+    private bool InputFilledCheck()
+    {
+        return string.IsNullOrEmpty(InputFirstName) || string.IsNullOrEmpty(InputLastname) ? false : true;
+    }
+
+    private void Redirect()
+    {
+        NavigationManager.NavigateTo("/", true);
     }
 }

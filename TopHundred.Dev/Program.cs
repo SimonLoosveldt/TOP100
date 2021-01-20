@@ -11,7 +11,7 @@ namespace TopHundred.Dev
             Console.WriteLine("Hello World!");
 
             var topContext = new TopContext();
-            var userParser = new UserParser(topContext);
+            var userParser = new UserController(topContext);
             var trackParser = new TrackParser(topContext);
             //var artistParser = new ArtistParser(topContext);
             var listEntryParser = new ListEntryParser(topContext);
