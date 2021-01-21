@@ -20,33 +20,26 @@
 </div>
 
 <div class="content_side">
-    <ul>
-        <li>
+    <MatList>
+        <MatListItem>
             <NavLink class="nav-link" href="" Match="NavLinkMatch.All" @onclick="(() => HandlePageChange(homePath))">
                 <span>INFO</span>
             </NavLink>
-        </li>
+        </MatListItem>        
 
-        <li>
-            <NavLink class="nav-link" href="/input/100_91" Match="NavLinkMatch.All" @onclick="(() => HandlePageChange(inputHomePath))">
-                <span>100 - 91</span>
-            </NavLink>
-        </li>
-
-        @for (int i = 91; i > 1; i -= 10)
+        @for (int i = 0; i < 10; i++)
         {
-            int lowerLimit = i - 10;
-            var nextPath = $"/input/{i - 1}_{lowerLimit}";
-            var nextPathTitle = $"{i - 1} - {lowerLimit}";
+            int upperLimit = 100 - i * 10;
+            int lowerLimit = 91 - (i * 10);
+            var nextPath = $"/input/{upperLimit}_{lowerLimit}";
+            var nextPathTitle = $"{upperLimit} - {lowerLimit}";
 
-            <li>
-                <NavLink class="nav-link" href="@nextPath" Match="NavLinkMatch.All" @onclick="(() => HandlePageChange(nextPath))">
-                    <span>@nextPathTitle</span>
-                </NavLink>
-            </li>
+            <MatListItem Href="@nextPath" @onclick="() => HandlePageChange(nextPath)">
+                <span>@nextPathTitle</span>
+            </MatListItem>
         }
 
-    </ul>
+    </MatList>
 </div>
 
 <div class="footer_side">

@@ -1,10 +1,8 @@
 ﻿@page "/login"
 @using TopHundred.Views.Services
-@using TopHundred.Models
 @using TopHundred.Controllers.Services
 @using TopHundred.Controllers.Exceptions
 @using TopHundred.Controllers
-@inject IAccountService accountService
 @inject IUserService userService
 @inject IErrorService errorService
 @inject NavigationManager NavigationManager
@@ -18,15 +16,15 @@
         </div>
 
         <div class="content">
-            <span>
-                <label>Firstname</label>
-                <input type="text" @bind="@InputFirstName" placeholder="Firstname">
-            </span>
-            <span>
-                <label>Lastname </label>
-                <input type="text" @bind="@InputLastname" placeholder="Lastname">
-            </span>
-
+            <MatCard>
+                <p>
+                    <MatTextField @bind-Value="@FirstName" Label="Voornaam" Outlined="true"></MatTextField>
+                </p>
+                <p>
+                    <MatTextField @bind-Value="@LastName" Label="Achternaam" Outlined="true"></MatTextField>
+                </p>
+            </MatCard>
+         
             <span>
                 <input type="button" id="login_button" @bind="LoginButtonLabel" @onclick="LoginPressed" />
             </span>
@@ -42,8 +40,8 @@
     // Properties
     public string PageTitle { get; set; } = "AANMELDEN";
     public string LoginButtonLabel { get; set; } = "LOGIN";
-    public string InputFirstName { get; set; } = string.Empty;
-    public string InputLastname { get; set; } = string.Empty;
+    public string FirstName { get; set; } = string.Empty;
+    public string LastName { get; set; } = string.Empty;
 
     // Protected
     protected override void OnInitialized()
@@ -63,7 +61,7 @@
 
             try
             {
-                userService.Login(userController.GetUserByName(InputFirstName, InputLastname));
+                userService.Login(userController.GetUserByName(FirstName, LastName));
                 Redirect();
             }
             catch (UserNotFoundException)
@@ -81,7 +79,7 @@
 
     private bool InputFilledCheck()
     {
-        return string.IsNullOrEmpty(InputFirstName) || string.IsNullOrEmpty(InputLastname) ? false : true;
+        return string.IsNullOrEmpty(FirstName) || string.IsNullOrEmpty(LastName) ? false : true;
     }
 
     private void Redirect()

@@ -1,3 +1,4 @@
+using MatBlazor;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
@@ -23,6 +24,7 @@ namespace TopHundred.Views
         {
             services.AddRazorPages();
             services.AddServerSideBlazor();
+            services.AddMatBlazor();
             services.AddSingleton<IAccountService, AccountService>();
             services.AddSingleton<IUserService, UserService>();
             services.AddSingleton<IErrorService, ErrorService>();
