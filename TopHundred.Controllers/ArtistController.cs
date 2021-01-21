@@ -1,5 +1,7 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Linq;
+using TopHundred.Controllers.Exceptions;
 using TopHundred.Models;
 
 namespace TopHundred.Controllers
@@ -44,8 +46,7 @@ namespace TopHundred.Controllers
 
         public IEnumerable<ITrack> GetTracksFromArtistById(int id)
         {
-            //return db.ListEntries.Include(x => x.Track).ThenInclude(x => x.Artist).AsEnumerable().Where(x => x.User.Id == id);
-            return db.Tracks.AsEnumerable().Where(x => x.Artist.Id == id);
+            return db.Tracks.AsEnumerable().Where(x => x.Artist.Id == id) ?? throw new ArtistNotFoundException($"Artist with id:{id} has no tracks.");
         }
 
         public Artist SearchIfExistElseCreateArtist(string artist)
