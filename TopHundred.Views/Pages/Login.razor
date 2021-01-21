@@ -4,9 +4,8 @@
 @using TopHundred.Controllers.Services
 @using TopHundred.Controllers.Exceptions
 @using TopHundred.Controllers
-@inject IAccountService accountService
-@inject IUserService userService
-@inject IErrorService errorService
+@inject IUserService UserService
+@inject IErrorService ErrorService
 @inject NavigationManager NavigationManager
 @inject IJSRuntime JSRuntime
 
@@ -63,7 +62,7 @@
 
             try
             {
-                userService.Login(userController.GetUserByName(InputFirstName, InputLastname));
+                UserService.Login(userController.GetUserByName(InputFirstName, InputLastname));
                 Redirect();
             }
             catch (UserNotFoundException)
