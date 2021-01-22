@@ -11,14 +11,7 @@ namespace TopHundred.Views.Pages
 {
     public partial class Input
     {
-        private readonly TopContext _topContext;
-        private static InputController inputController;
         private readonly string loginPath = "/login";
-
-        public Input(TopContext topContext)
-        {
-            _topContext = topContext;
-        }
 
         // Parameters
         [Parameter]
@@ -29,6 +22,8 @@ namespace TopHundred.Views.Pages
         public IUserService UserService { get; set; }
         [Inject]
         public NavigationManager NavigationManager { get; set; }
+        [Inject]
+        public InputController InputController { get; set; }
 
         // Properties
         public string PageTitle { get; set; } = "TOP100";
@@ -44,14 +39,12 @@ namespace TopHundred.Views.Pages
                 HandleNotLoggedIn();
             }
 
-            inputController = new InputController(_topContext);
-
             var boundaries = Param.Split('_');
 
             UpperLimit = int.Parse(boundaries[0]);
             LowerLimit = int.Parse(boundaries[1]);
 
-            userListEntries = inputController.GetPreviousData(UserService.GetCurrentUser(), UpperLimit, LowerLimit);
+            userListEntries = InputController.GetPreviousData(UserService.GetCurrentUser(), UpperLimit, LowerLimit);
 
             Thread syncThread = new Thread(SyncToDatabase);
             syncThread.Start();
@@ -60,7 +53,7 @@ namespace TopHundred.Views.Pages
         private void UpdateDatabase()
         {
             SaveButtonLabel = "PRESSED";
-            inputController.UpdateDatabase(UserService.GetCurrentUser(), userListEntries);
+            InputController.UpdateDatabase(UserService.GetCurrentUser(), userListEntries);
         }
 
         public void HandleNotLoggedIn()

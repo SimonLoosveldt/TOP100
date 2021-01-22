@@ -4,6 +4,8 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
+using TopHundred.Core;
+using TopHundred.Core.Controllers;
 using TopHundred.Core.Entities;
 using TopHundred.Core.Services;
 
@@ -27,7 +29,9 @@ namespace TopHundred.Views
             services.AddDbContext<TopContext>(options => options.UseSqlServer(Configuration.GetConnectionString("TOP-DB")));
             services.AddSingleton<IAccountService, AccountService>();
             services.AddSingleton<IUserService, UserService>();
-            services.AddSingleton<IErrorService, ErrorService>();
+            services.AddSingleton<IErrorService, ErrorService>();            
+            services.AddScoped<UserRepository, UserRepository>();
+            services.AddScoped<InputController, InputController>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

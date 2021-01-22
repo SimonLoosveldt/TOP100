@@ -11,14 +11,6 @@ namespace TopHundred.Views.Pages
 {
     public partial class Login
     {
-        // Private
-        private readonly TopContext _topContext;
-
-        public Login(TopContext topContext)
-        {
-            _topContext = topContext;
-        }
-
         // Services
         [Inject]
         public IAccountService AccountService { get; set; }
@@ -30,19 +22,14 @@ namespace TopHundred.Views.Pages
         public NavigationManager NavigationManager { get; set; }
         [Inject]
         public IJSRuntime JSRuntime { get; set; }
+        [Inject]
+        public UserRepository UserRepository { get; set; }
 
         // Properties
         public string PageTitle { get; set; } = "AANMELDEN";
         public string LoginButtonLabel { get; set; } = "LOGIN";
         public string InputFirstName { get; set; } = string.Empty;
         public string InputLastname { get; set; } = string.Empty;
-        private UserRepository UserRepository { get; set; }
-
-        // Protected
-        protected override void OnInitialized()
-        {
-            UserRepository = new UserRepository(_topContext);
-        }
 
         // Private
         private async void LoginPressed()
