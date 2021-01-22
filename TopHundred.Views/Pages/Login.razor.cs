@@ -6,6 +6,7 @@ using TopHundred.Core;
 using Microsoft.AspNetCore.Components;
 using Microsoft.JSInterop;
 using TopHundred.Core.Entities;
+using TopHundred.Core.Repositories;
 
 namespace TopHundred.Views.Pages
 {
@@ -23,7 +24,7 @@ namespace TopHundred.Views.Pages
         [Inject]
         public IJSRuntime JSRuntime { get; set; }
         [Inject]
-        public UserRepository UserRepository { get; set; }
+        public IUserRepository UserRepository { get; set; }
 
         // Properties
         public string PageTitle { get; set; } = "AANMELDEN";
@@ -43,7 +44,7 @@ namespace TopHundred.Views.Pages
 
                 try
                 {
-                    UserService.Login(UserRepository.GetUserByName(InputFirstName, InputLastname));
+                    UserService.Login(UserRepository.GetByName(InputFirstName, InputLastname));
                     Redirect();
                 }
                 catch (UserNotFoundException)

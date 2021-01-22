@@ -53,7 +53,7 @@ namespace TopHundred.Views.Pages
         private void UpdateDatabase()
         {
             SaveButtonLabel = "PRESSED";
-            InputController.UpdateDatabase(UserService.GetCurrentUser(), userListEntries);
+            InputController.Sync(UserService.GetCurrentUser(), userListEntries);
         }
 
         public void HandleNotLoggedIn()

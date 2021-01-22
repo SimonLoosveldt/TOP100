@@ -13,7 +13,6 @@ namespace TopHundred.Core.Entities
             SpotifyUri = string.Empty;
             Tracks = new List<Track>();
         }
-
         public Artist (string name) : this()
         {
             Name = name;

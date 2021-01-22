@@ -1,45 +1,18 @@
-﻿using TopHundred.Core.Exceptions;
-using System.Collections.Generic;
-using System.Linq;
-using Microsoft.EntityFrameworkCore;
-using System;
+﻿using System.Linq;
 using TopHundred.Core.Entities;
+using TopHundred.Core.Exceptions;
 
-namespace TopHundred.Core
+namespace TopHundred.Core.Repositories
 {
-    public class UserRepository
+    public class UserRepository : BaseRepository<User>, IUserRepository
     {
-        private readonly TopContext db;
-
-        public UserRepository(TopContext topContext)
+        public UserRepository(TopContext db) : base(db)
         {
-            this.db = topContext;
         }
 
-        public void AddUser(User user)
+        public User GetByName(string firstName, string lastName)
         {
-            db.Users.Add(user);
-            db.SaveChanges();
-        }
-
-        public IEnumerable<User> GetAllUsers()
-        {
-            return db.Users.AsEnumerable() ?? throw new UserNotFoundException($"No users in database.");
-        }
-
-        public User GetUserById(int id)
-        {
-            return db.Users.Where(x => x.Id == id).FirstOrDefault() ?? throw new UserNotFoundException($"No user with id:{id} in database.");
-        }
-
-        public IEnumerable<ListEntry> GetListEntriesFromUserById(int id)
-        {
-            return db.ListEntries.Include(x => x.Track).ThenInclude(x => x.Artist).AsEnumerable().Where(x => x.User.Id == id) ?? throw new ListEntryNotFoundException($"No list entries for user with id:{id} in database.");
-        }
-
-        public User GetUserByName(string firstname, string lastname)
-        {
-            return db.Users.Where(x => x.Firstname == firstname && x.Lastname == lastname).FirstOrDefault() ?? throw new UserNotFoundException($"No user with firstname:{firstname} & lastname:{lastname} in database.");
+            return _db.Users.SingleOrDefault(x => x.Firstname == firstName && x.Lastname == lastName) ?? throw new UserNotFoundException($"User with name {firstName} {lastName} not found in database.");
         }
     }
 }

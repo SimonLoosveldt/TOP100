@@ -4,77 +4,110 @@ using System.Collections.Generic;
 using System.Linq;
 using TopHundred.Core.ViewModels;
 using TopHundred.Core.Entities;
+using TopHundred.Core.Repositories;
+using TopHundred.Core.Exceptions;
 
 namespace TopHundred.Core.Controllers
 {
     public class InputController
     {
-        private readonly TopContext db;
-        private readonly TrackRepository trackRepository;
-        private readonly ArtistRepository artistRepository;
-        private readonly ListEntryRepository listEntryRepository;
+        private readonly ITrackRepository _trackRepository;
+        private readonly IArtistRepository _artistRepository;
+        private readonly IListEntryRepository _listEntryRepository;
 
-        public InputController(TopContext topContext)
+        public InputController(IArtistRepository artistRepository, ITrackRepository trackRepository, IListEntryRepository listEntryRepository)
         {
-            this.db = topContext;
-            this.trackRepository = new TrackRepository(db);
-            this.artistRepository = new ArtistRepository(db);
-            this.listEntryRepository = new ListEntryRepository(db);
-            db.SaveChanges();
+            _artistRepository = artistRepository;
+            _trackRepository = trackRepository;
+            _listEntryRepository = listEntryRepository;
         }
 
-        public void UpdateDatabase(User user, List<ListEntryViewModel> userListEntries)
+        public void Sync(User user, List<ListEntryViewModel> userListEntries)
         {
             foreach (var listEntry in userListEntries)
             {
-                if (string.IsNullOrEmpty(listEntry.Artist) && string.IsNullOrEmpty(listEntry.Title))
+                if (listEntry.IsEmpty())
                 {
-                    if (listEntryRepository.SearchIfListEntryExist(user, listEntry.Points))
+                    var entries = _listEntryRepository.Search(x => x.User == user && x.Points == listEntry.Points);
+                    if (entries.Any())
                     {
-                        listEntryRepository.DeleteListEntry(user, listEntry.Points);
-                    }
+                        _listEntryRepository.Remove(entries);
+                    }                  
                 }
                 else
                 {
-                    var retrievedArtist = artistRepository.SearchIfExistElseCreateArtist(listEntry.Artist);
-                    var retrievedTrack = trackRepository.SearchIfExistElseCreateTrack(listEntry.Title, retrievedArtist);
-
-                    if (listEntryRepository.SearchIfListEntryExist(user, listEntry.Points))
-                    {
-                        listEntryRepository.ChangeListEntryParams(user, retrievedTrack, listEntry.Points);
-                    }
-                    else
-                    {
-                        listEntryRepository.AddNewListEntry(user, retrievedTrack, listEntry.Points);
-                    }
+                    var artist = TryFindArtist(listEntry.Artist);
+                    var track = TryFindTrack(artist, listEntry.Title);
+                    CreateListEntry(user, track, listEntry.Points);                    
                 }
             }
-        }
-
+        }     
         public List<ListEntryViewModel> GetPreviousData(User user, int upperLimit, int lowerLimit)
         {
             var previousDataSample = new List<ListEntryViewModel>();
-            var allListEntries = GetAllListEntriesFromUser(user);
+            var entries = _listEntryRepository.GetByUser(user);
 
-            for (int i = lowerLimit; i <= upperLimit; i++)
+            for (int points = lowerLimit; points <= upperLimit; points++)
             {
                 try
                 {
-                    var track = allListEntries.Single(x => x.Points == i).Track;
-                    previousDataSample.Add(new ListEntryViewModel(i, track.Artist.Name, track.Title));
+                    var track = entries.Single(x => x.Points == points).Track;
+                    previousDataSample.Add(new ListEntryViewModel(points, track.Artist.Name, track.Title));
                 }
                 catch (InvalidOperationException)
                 {
-                    previousDataSample.Add(new ListEntryViewModel(i, string.Empty, string.Empty));
+                    previousDataSample.Add(new ListEntryViewModel(points));
                 }
 
             }
             return previousDataSample;
         }
 
-        public IEnumerable<ListEntry> GetAllListEntriesFromUser(User user)
+        private Track TryFindTrack(Artist artist, string title)
         {
-            return db.ListEntries.Include(x => x.User).Include(x => x.Track).ThenInclude(x => x.Artist).Where(x => x.User.Id == user.Id).AsEnumerable();
+            Track track;
+            try
+            {
+                track = _trackRepository.GetByArtistTitle(artist, title);
+            }
+            catch (TrackNotFoundException)
+            {
+                track = new Track(artist, title);
+                _trackRepository.Add(track);
+            }
+            return track;
+        }
+        private Artist TryFindArtist(string name)
+        {
+            Artist artist;
+            try
+            {
+                artist = _artistRepository.GetByName(name);
+
+            }
+            catch (ArtistNotFoundException)
+            {
+                artist = new Artist(name);
+                _artistRepository.Add(artist);
+            }
+
+            return artist;
+        }
+        private ListEntry CreateListEntry(User user, Track track, int points)
+        {
+            ListEntry listEntry;
+            try
+            {
+                listEntry = _listEntryRepository.GetByUserPoints(user, points);
+
+            }
+            catch (ListEntryNotFoundException)
+            {
+                listEntry = new ListEntry(user, track, points, DateTime.Today.Year);
+                _listEntryRepository.Add(listEntry);
+            }
+
+            return listEntry;
         }
     }
 }

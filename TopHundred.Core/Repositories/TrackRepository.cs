@@ -5,53 +5,17 @@ using Microsoft.EntityFrameworkCore;
 using TopHundred.Core.Exceptions;
 using TopHundred.Core.Entities;
 
-namespace TopHundred.Core
+namespace TopHundred.Core.Repositories
 {
-    public class TrackRepository
+    public class TrackRepository : BaseRepository<Track>, ITrackRepository
     {
-        private readonly TopContext db;
-
-        public TrackRepository(TopContext topContext)
+        public TrackRepository(TopContext db) : base(db)
         {
-            this.db = topContext;
-            db.SaveChanges();
         }
 
-        public void AddTrack(Track track)
+        public Track GetByArtistTitle(Artist artist, string title)
         {
-            db.Tracks.Add(track);
-        }
-
-        public Track AddNewTrack(string title, Artist artist)
-        {
-            db.Tracks.Attach(new Track(title, artist));
-            db.SaveChanges();
-            return db.Tracks.Single(x => x.Artist == artist && x.Title == title);
-        }
-
-        public IEnumerable<Track> GetAllTracks()
-        {
-            return db.Tracks.Include(x => x.Artist).AsEnumerable() ?? throw new TrackNotFoundException("No tracks in database.");
-        }
-
-        public Track GetTrackById(int id)
-        {
-            return db.Tracks.Where(x => x.Id == id).Include(x => x.Artist).FirstOrDefault() ?? throw new TrackNotFoundException($"No track with id:{id} in database.");
-        }
-
-        public IEnumerable<ListEntry> GetListEntriesFromTrackById(int id)
-        {
-            return db.Tracks.Where(x => x.Id == id).Select(x => x.ListEntries).FirstOrDefault() ?? throw new TrackNotFoundException($"No list entries for track with id:{id} in database.");
-        }
-
-        public Track GetTrackFromTitleAndArtist(string title, string artist)
-        {
-            return db.Tracks.Where(x => x.Title == title && x.Artist.Name == artist).FirstOrDefault() ?? throw new TrackNotFoundException($"No track with title:{title} & artist:{artist} in database.");
-        }
-
-        public Track SearchIfExistElseCreateTrack(string title, Artist artist)
-        {
-            return db.Tracks.Any(x => x.Artist == artist && x.Title == title) ? db.Tracks.Single(x => x.Artist == artist && x.Title == title) : AddNewTrack(title, artist);
+            return _db.Tracks.SingleOrDefault(x => x.Artist == artist && x.Title == title) ?? throw new TrackNotFoundException($"Track {title} from artist {artist} not found");
         }
     }
 }

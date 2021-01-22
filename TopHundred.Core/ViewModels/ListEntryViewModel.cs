@@ -12,7 +12,9 @@ namespace TopHundred.Core.ViewModels
             _artist = string.Empty;
             _title = string.Empty;
         }
-
+        public ListEntryViewModel(int points) : this(points, string.Empty, string.Empty)
+        {
+        }
         public ListEntryViewModel(int points, string artist, string title)
         {
             Points = points;
@@ -35,6 +37,10 @@ namespace TopHundred.Core.ViewModels
         public override string ToString()
         {
             return $"{Points}: {Artist} - {Title}";
+        }
+        public bool IsEmpty()
+        {
+            return string.IsNullOrEmpty(_artist) && string.IsNullOrEmpty(_title);
         }
 
         protected override void OnPropertyChanged([CallerMemberName] string propertyName = null)

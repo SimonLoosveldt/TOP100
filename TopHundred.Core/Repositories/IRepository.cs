@@ -11,6 +11,9 @@ namespace TopHundred.Core.Repositories
         T GetById(int id);
 
         IEnumerable<T> GetAll();
-        IEnumerable<T> Find(Expression<Func<T, bool>> predicate);
+        IEnumerable<T> Search(Expression<Func<T, bool>> predicate);
+
+        void Remove(T enitity);
+        void Remove(IEnumerable<T> entities);
     }
 }

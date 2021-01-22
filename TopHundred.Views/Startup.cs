@@ -7,6 +7,7 @@ using Microsoft.Extensions.Hosting;
 using TopHundred.Core;
 using TopHundred.Core.Controllers;
 using TopHundred.Core.Entities;
+using TopHundred.Core.Repositories;
 using TopHundred.Core.Services;
 
 namespace TopHundred.Views
@@ -30,7 +31,10 @@ namespace TopHundred.Views
             services.AddSingleton<IAccountService, AccountService>();
             services.AddSingleton<UserService, UserService>();
             services.AddSingleton<IErrorService, ErrorService>();            
-            services.AddScoped<UserRepository, UserRepository>();
+            services.AddScoped<IUserRepository, UserRepository>();
+            services.AddScoped<ITrackRepository, TrackRepository>();
+            services.AddScoped<IArtistRepository, ArtistRepository>();
+            services.AddScoped<IListEntryRepository, ListEntryRepository>();
             services.AddScoped<InputController, InputController>();
         }
 

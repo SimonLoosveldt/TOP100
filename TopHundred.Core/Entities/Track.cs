@@ -13,7 +13,7 @@ namespace TopHundred.Core.Entities
             ReleaseDate = new ReleaseDateInfo();
         }
 
-        public Track (string title, Artist artist)
+        public Track (Artist artist, string title)
         {
             Title = title;
             Artist = artist;
