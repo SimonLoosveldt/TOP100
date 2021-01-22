@@ -1,8 +1,5 @@
 ﻿@page "/"
 @page "/home"
-@using TopHundred.Controllers.Services
-@inject IUserService userService 
-@inject NavigationManager NavigationManager
 
 <div class="sidebar">
     <SideNav />
@@ -59,20 +56,5 @@
 </div>
 
 @code {
-    private readonly string loginPath = "/login";
-
-    public string PageTitle { get; set; } = "INFO";
-
-    public void HandleNotLoggedIn()
-    {
-        NavigationManager.NavigateTo(loginPath, true);
-    }
-
-    protected override void OnInitialized()
-    {
-        if (!userService.IsLoggedIn())
-        {
-            HandleNotLoggedIn();
-        }
-    }
+    
 }

@@ -1,8 +1,4 @@
-﻿@using TopHundred.Controllers.Services
-@using TopHundred.Models
-@inject NavigationManager NavigationManager
-@inject IUserService UserService
-
+﻿
 <div class="header_side">
     @if (LoggedInUser != null)
     {
@@ -58,34 +54,3 @@
         <li><a href="https://www.messenger.com/t/simon.loosveldt"><img src="img/messenger_white.png" alt="Link naar Messenger Simon Loosveldt" style="width:32px;height:32px;"></a></li>
     </ul>
 </div>
-
-@code {
-
-    private readonly string inputHomePath = "/input/100_91";
-    private readonly string homePath = "/home";
-    private readonly string loginPath = "/login";
-
-    // Properties
-    public User LoggedInUser { get; set; }
-
-    // Public
-    public void LogInPressed()
-    {
-        HandlePageChange(loginPath);
-    }
-    public void LogOutPressed()
-    {
-        UserService.Logout();
-        HandlePageChange(loginPath);
-    }
-    public void HandlePageChange(string path)
-    {
-        NavigationManager.NavigateTo(path, true);
-    }
-
-    // Protected
-    protected override void OnInitialized()
-    {
-        LoggedInUser = UserService.GetCurrentUser();
-    }
-}

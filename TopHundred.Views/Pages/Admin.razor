@@ -1,5 +1,4 @@
 ﻿@page "/admin"
-@using TopHundred.Controllers
 
 <div class="main">
     <div class="middleContent">
@@ -32,52 +31,8 @@
                         <p id="result">@NonSpotifySongs</p>
                     </div>
                 </div>
-
-                <!--
-                    <div class="manual_wrapper">
-                        <div class="tile" id="manual_rect">
-                            <p id="title">MANUAL ENTRIES</p>
-                            <p id="content">Doe maar Dave - Fuifje</p>
-                            <p id="content">Monsta - Holdin' On (Skrillex & Nero Remix)</p>
-                            <p id="content">Omar Duro - Huts A Lady</p>
-                            <p id="content">Marek Hemmann - Zunder</p>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="right_content">
-                    <div class="user_wrapper">
-                        <div class="tile" id="users_rect">
-                            <p id="title">USERS</p>
-                            <div id="contentUsers">
-                                <p>Simon Loosveldt</p>
-                                <p>Michel Michels</p>
-                                <p>Simon Loosveldt</p>
-                            </div>
-                        </div>
-                    </div>
-                        -->
             </div>
 
         </div>
     </div>
 </div>
-
-@code {
-    public string pageTitle { get; set; } = "ADMINPANEL";
-
-    public int SubmissionEntries { get; set; } = 0;
-    public int CompletedEntries { get; set; } = 0;
-    public int DifferentSongs { get; set; } = 0;
-    public int NonSpotifySongs { get; set; } = 0;
-
-    protected override void OnInitialized()
-    {
-        var adminController = new AdminController();
-
-        SubmissionEntries = adminController.GetCountSubmissionEntries();
-        CompletedEntries = adminController.GetCountCompletedEntries();
-        DifferentSongs = adminController.GetCountTracks();
-        NonSpotifySongs = adminController.GetCountNonSpotifyTracks();
-    }
-}
