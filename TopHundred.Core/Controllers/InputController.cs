@@ -45,7 +45,7 @@ namespace TopHundred.Core.Controllers
         public List<ListEntryViewModel> GetPreviousData(User user, int upperLimit, int lowerLimit)
         {
             var previousDataSample = new List<ListEntryViewModel>();
-            var entries = _listEntryRepository.GetByUser(user);
+            var entries = _listEntryRepository.GetAll().ToList();
 
             for (int points = lowerLimit; points <= upperLimit; points++)
             {

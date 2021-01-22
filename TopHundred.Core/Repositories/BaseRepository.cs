@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Microsoft.EntityFrameworkCore;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Linq.Expressions;
@@ -21,12 +22,12 @@ namespace TopHundred.Core.Repositories
             _db.SaveChanges();
         }
 
-        public virtual IEnumerable<T> Search(Expression<Func<T, bool>> predicate)
+        public virtual IQueryable<T> Search(Func<T, bool> predicate)
         {
-            return _db.Set<T>().Where(predicate);
+            return _db.Set<T>().Where(predicate).AsQueryable();
         }
 
-        public virtual IEnumerable<T> GetAll()
+        public virtual IQueryable<T> GetAll()
         {
             return _db.Set<T>();
         }
