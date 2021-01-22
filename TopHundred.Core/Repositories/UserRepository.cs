@@ -32,7 +32,7 @@ namespace TopHundred.Core
             return db.Users.Where(x => x.Id == id).FirstOrDefault() ?? throw new UserNotFoundException($"No user with id:{id} in database.");
         }
 
-        public IEnumerable<IListEntry> GetListEntriesFromUserById(int id)
+        public IEnumerable<ListEntry> GetListEntriesFromUserById(int id)
         {
             return db.ListEntries.Include(x => x.Track).ThenInclude(x => x.Artist).AsEnumerable().Where(x => x.User.Id == id) ?? throw new ListEntryNotFoundException($"No list entries for user with id:{id} in database.");
         }

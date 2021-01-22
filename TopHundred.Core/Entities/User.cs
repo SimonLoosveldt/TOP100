@@ -1,23 +1,23 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
 namespace TopHundred.Core.Entities
 {
-    public class User : IUser
+    public class User
     {
-        public User(/*string firstname, string lastname, string uri*/)
+        public User()
         {
-            //this.Firstname = firstname;
-            //this.Lastname = lastname;
-            //this.SpotifyUri = uri;
+            Firstname = string.Empty;
+            Lastname = string.Empty;
+            SpotifyUri = string.Empty;
+            Completed = false;
         }
-        public User(string firstname, string lastname, string uri)
+        public User(string firstName, string lastName, string uri)
         {
-            this.Firstname = firstname;
-            this.Lastname = lastname;
-            this.SpotifyUri = uri;
+            Firstname = firstName;
+            Lastname = lastName;
+            SpotifyUri = uri;
         }
 
         [Key]
@@ -31,9 +31,7 @@ namespace TopHundred.Core.Entities
         public string SpotifyUri { get; set; }
         public bool Completed { get; set; }
 
-
         public IEnumerable<ListEntry> ListEntries { get; set; }
-
 
         public override string ToString()
         {

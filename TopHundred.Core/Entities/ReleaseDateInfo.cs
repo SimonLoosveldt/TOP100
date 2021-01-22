@@ -1,16 +1,10 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations;
+﻿using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace TopHundred.Core.Entities
 {
-    public class ReleaseDateInfo : IReleaseDateInfo
+    public class ReleaseDateInfo
     {
-
         public ReleaseDateInfo()
         {
             ReleaseDate = string.Empty;
@@ -31,8 +25,6 @@ namespace TopHundred.Core.Entities
         public string ReleaseDate { get; set; }
         [Required]
         public string ReleaseDatePrecision { get; set; }
-
-
         public Track Track { get; set; }
 
         public override string ToString()

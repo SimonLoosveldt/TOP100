@@ -19,7 +19,7 @@ namespace TopHundred.Views.Pages
 
         //Services
         [Inject]
-        public IUserService UserService { get; set; }
+        public UserService UserService { get; set; }
         [Inject]
         public NavigationManager NavigationManager { get; set; }
         [Inject]

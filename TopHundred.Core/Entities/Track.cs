@@ -1,23 +1,22 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
-using System.Text;
 
 namespace TopHundred.Core.Entities
 {
-    public class Track : ITrack
+    public class Track
     {
-
         public Track()
         {
             Title = string.Empty;
+            SpotifyUri = string.Empty;
+            ReleaseDate = new ReleaseDateInfo();
         }
 
         public Track (string title, Artist artist)
         {
-            this.Title = title;
-            this.Artist = artist;
+            Title = title;
+            Artist = artist;
         }
 
         [Key]

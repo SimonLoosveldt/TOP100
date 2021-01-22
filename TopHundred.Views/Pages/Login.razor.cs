@@ -15,7 +15,7 @@ namespace TopHundred.Views.Pages
         [Inject]
         public IAccountService AccountService { get; set; }
         [Inject]
-        public IUserService UserService { get; set; }
+        public UserService UserService { get; set; }
         [Inject]
         public IErrorService ErrorService { get; set; }
         [Inject]

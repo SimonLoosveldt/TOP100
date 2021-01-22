@@ -1,26 +1,22 @@
-﻿using Microsoft.EntityFrameworkCore;
-using System;
-using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations;
+﻿using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
-using System.Text;
 
 namespace TopHundred.Core.Entities
 {
-    public class ListEntry : IListEntry
+    public class ListEntry
     {
-
         public ListEntry()
         {
-
+            Track = new Track();
+            User = new User();
         }
 
         public ListEntry(User user, Track track, int points, int year)
         {
-            this.User = user;
-            this.Track = track;
-            this.Points = points;
-            this.Year = year;
+            User = user;
+            Track = track;
+            Points = points;
+            Year = year;
         }
 
         [Key]
@@ -30,13 +26,10 @@ namespace TopHundred.Core.Entities
         public int Points { get; set; }
         [Required]
         public int Year { get; set; }
-
-
         [Required]
         public Track Track { get; set; }
         [Required]
         public User User { get; set; }
-
 
         public override string ToString()
         {

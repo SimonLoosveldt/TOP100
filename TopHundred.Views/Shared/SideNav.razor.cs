@@ -19,7 +19,7 @@ namespace TopHundred.Views.Shared
         [Inject]
         public NavigationManager NavigationManager { get; set; }
         [Inject]
-        public IUserService UserService { get; set; }
+        public UserService UserService { get; set; }
 
         // Properties
         public User LoggedInUser { get; set; }

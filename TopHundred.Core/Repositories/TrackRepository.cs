@@ -34,12 +34,12 @@ namespace TopHundred.Core
             return db.Tracks.Include(x => x.Artist).AsEnumerable() ?? throw new TrackNotFoundException("No tracks in database.");
         }
 
-        public ITrack GetTrackById(int id)
+        public Track GetTrackById(int id)
         {
             return db.Tracks.Where(x => x.Id == id).Include(x => x.Artist).FirstOrDefault() ?? throw new TrackNotFoundException($"No track with id:{id} in database.");
         }
 
-        public IEnumerable<IListEntry> GetListEntriesFromTrackById(int id)
+        public IEnumerable<ListEntry> GetListEntriesFromTrackById(int id)
         {
             return db.Tracks.Where(x => x.Id == id).Select(x => x.ListEntries).FirstOrDefault() ?? throw new TrackNotFoundException($"No list entries for track with id:{id} in database.");
         }

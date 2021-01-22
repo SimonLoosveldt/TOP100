@@ -9,9 +9,9 @@ namespace TopHundred.Core
     {
         private readonly TopContext db;
 
-        public ArtistRepository(TopContext topContext)
+        public ArtistRepository(TopContext db)
         {
-            this.db = topContext;
+            this.db = db;
         }
 
         public void AddArtist(Artist artist)
@@ -27,17 +27,17 @@ namespace TopHundred.Core
             return db.Artists.Single(x => x.Name == name);
         }
 
-        public IEnumerable<IArtist> GetAllArtists()
+        public IEnumerable<Artist> GetAllArtists()
         {
             return db.Artists.AsEnumerable() ?? throw new ArtistNotFoundException("No artists in database.");
         }
 
-        public IArtist GetArtistById(int id)
+        public Artist GetArtistById(int id)
         {
             return db.Artists.Where(x => x.Id == id).FirstOrDefault() ?? throw new ArtistNotFoundException($"No artist with id:{id} in database.");
         }
 
-        public IEnumerable<ITrack> GetTracksFromArtistById(int id)
+        public IEnumerable<Track> GetTracksFromArtistById(int id)
         {
             return db.Tracks.AsEnumerable().Where(x => x.Artist.Id == id) ?? throw new ArtistNotFoundException($"Artist with id:{id} has no tracks.");
         }

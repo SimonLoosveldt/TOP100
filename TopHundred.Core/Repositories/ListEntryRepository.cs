@@ -28,7 +28,7 @@ namespace TopHundred.Core
             db.SaveChanges();
         }
 
-        public IEnumerable<IListEntry> GetAllListEntries()
+        public IEnumerable<ListEntry> GetAllListEntries()
         {
             return db.ListEntries.AsEnumerable() ?? throw new ListEntryNotFoundException("No listentries in database.");
         }
@@ -39,7 +39,7 @@ namespace TopHundred.Core
             db.SaveChanges();
         }
 
-        public IListEntry GetListEntryById(int id)
+        public ListEntry GetListEntryById(int id)
         {
             return db.ListEntries.Where(x => x.Id == id).FirstOrDefault() ?? throw new ListEntryNotFoundException($"No listentry with id:{id} in database.");
         }
