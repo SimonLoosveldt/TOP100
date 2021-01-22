@@ -5,7 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using TopHundred.Models;
 
-namespace TopHundred.Controllers.Services
+namespace TopHundred.Core.Services
 {
     public interface IUserService
     {

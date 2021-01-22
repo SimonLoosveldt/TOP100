@@ -1,7 +1,7 @@
 ﻿using TopHundred.Models;
 using System.Linq;
 
-namespace TopHundred.Controllers
+namespace TopHundred.Core
 {
     public class AdminController
     {

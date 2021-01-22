@@ -28,8 +28,8 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\TopHundred.Core\TopHundred.Core.csproj" />
     <ProjectReference Include="..\TopHundred.Models\TopHundred.Models.csproj" />
-    <ProjectReference Include="..\TopHundred.Controllers\TopHundred.Controllers.csproj" />
   </ItemGroup>
 
 </Project>

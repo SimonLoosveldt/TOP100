@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using TopHundred.Controllers;
+﻿using TopHundred.Core;
 
 namespace TopHundred.Views.Pages
 {

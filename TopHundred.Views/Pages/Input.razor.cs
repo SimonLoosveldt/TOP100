@@ -2,8 +2,8 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-using TopHundred.Controllers.Services;
-using TopHundred.Controllers;
+using TopHundred.Core.Services;
+using TopHundred.Core;
 using TopHundred.Models.ViewModels;
 using System.Threading;
 using Microsoft.AspNetCore.Components;

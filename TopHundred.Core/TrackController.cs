@@ -5,9 +5,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Microsoft.EntityFrameworkCore;
-using TopHundred.Controllers.Exceptions;
+using TopHundred.Core.Exceptions;
 
-namespace TopHundred.Controllers
+namespace TopHundred.Core
 {
     public class TrackController
     {

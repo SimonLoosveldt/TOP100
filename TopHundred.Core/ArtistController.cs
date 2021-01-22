@@ -1,10 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using TopHundred.Controllers.Exceptions;
+using TopHundred.Core.Exceptions;
 using TopHundred.Models;
 
-namespace TopHundred.Controllers
+namespace TopHundred.Core
 {
     public class ArtistController
     {

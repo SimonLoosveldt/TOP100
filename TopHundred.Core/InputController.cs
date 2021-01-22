@@ -7,7 +7,7 @@ using System.Text;
 using System.Threading.Tasks;
 using TopHundred.Models.ViewModels;
 
-namespace TopHundred.Controllers
+namespace TopHundred.Core
 {
     public class InputController
     {

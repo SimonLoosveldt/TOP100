@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
-using TopHundred.Controllers;
+using TopHundred.Core;
 using TopHundred.Models.ViewModels;
 
 namespace TopHundred.Views.Services

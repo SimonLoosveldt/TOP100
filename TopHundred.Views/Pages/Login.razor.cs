@@ -1,8 +1,8 @@
 ﻿using System.Threading.Tasks;
 using TopHundred.Views.Services;
-using TopHundred.Controllers.Services;
-using TopHundred.Controllers.Exceptions;
-using TopHundred.Controllers;
+using TopHundred.Core.Services;
+using TopHundred.Core.Exceptions;
+using TopHundred.Core;
 using Microsoft.AspNetCore.Components;
 using Microsoft.JSInterop;
 

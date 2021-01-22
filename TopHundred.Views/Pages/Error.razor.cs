@@ -1,9 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-
-namespace TopHundred.Views.Pages
+﻿namespace TopHundred.Views.Pages
 {
     public partial class Error
     {

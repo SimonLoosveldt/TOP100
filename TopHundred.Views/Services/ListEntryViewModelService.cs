@@ -1,5 +1,5 @@
 ﻿using System.Collections.Generic;
-using TopHundred.Controllers;
+using TopHundred.Core;
 using TopHundred.Models;
 using TopHundred.Models.ViewModels;
 
