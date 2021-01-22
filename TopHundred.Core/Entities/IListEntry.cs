@@ -1,4 +1,4 @@
-﻿namespace TopHundred.Models
+﻿namespace TopHundred.Core.Entities
 {
     public interface IListEntry
     {

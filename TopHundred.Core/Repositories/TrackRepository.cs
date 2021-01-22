@@ -1,26 +1,23 @@
-﻿using TopHundred.Models;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using Microsoft.EntityFrameworkCore;
 using TopHundred.Core.Exceptions;
+using TopHundred.Core.Entities;
 
 namespace TopHundred.Core
 {
-    public class TrackController
+    public class TrackRepository
     {
         private readonly TopContext db;
 
-
-        public TrackController()
+        public TrackRepository()
         {
             this.db = new TopContext();
             db.SaveChanges();
         }
 
-        public TrackController(TopContext topContext)
+        public TrackRepository(TopContext topContext)
         {
             this.db = topContext;
             db.SaveChanges();
@@ -40,38 +37,27 @@ namespace TopHundred.Core
 
         public IEnumerable<Track> GetAllTracks()
         {
-            return db.Tracks.Include(x => x.Artist).AsEnumerable();
+            return db.Tracks.Include(x => x.Artist).AsEnumerable() ?? throw new TrackNotFoundException("No tracks in database.");
         }
 
         public ITrack GetTrackById(int id)
         {
-            return db.Tracks.Where(x => x.Id == id).Include(x => x.Artist).FirstOrDefault();
+            return db.Tracks.Where(x => x.Id == id).Include(x => x.Artist).FirstOrDefault() ?? throw new TrackNotFoundException($"No track with id:{id} in database.");
         }
 
         public IEnumerable<IListEntry> GetListEntriesFromTrackById(int id)
         {
-            return db.Tracks.Where(x => x.Id == id).Select(x => x.ListEntries).FirstOrDefault();
+            return db.Tracks.Where(x => x.Id == id).Select(x => x.ListEntries).FirstOrDefault() ?? throw new TrackNotFoundException($"No list entries for track with id:{id} in database.");
         }
 
         public Track GetTrackFromTitleAndArtist(string title, string artist)
         {
-            try
-            { 
-                return db.Tracks.Single(x => x.Title == title && x.Artist.Name == artist);
-            } 
-            catch (InvalidOperationException e)
-            {
-                throw new TrackNotFoundException($"Track not found with title:{title} and artist:{artist}", e); 
-            }  
-            
-
-
+            return db.Tracks.Where(x => x.Title == title && x.Artist.Name == artist).FirstOrDefault() ?? throw new TrackNotFoundException($"No track with title:{title} & artist:{artist} in database.");
         }
 
         public Track SearchIfExistElseCreateTrack(string title, Artist artist)
         {
             return db.Tracks.Any(x => x.Artist == artist && x.Title == title) ? db.Tracks.Single(x => x.Artist == artist && x.Title == title) : AddNewTrack(title, artist);
         }
-
     }
 }

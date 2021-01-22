@@ -4,7 +4,7 @@ using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 using System.Text;
 
-namespace TopHundred.Models
+namespace TopHundred.Core.Entities
 {
     public class Track : ITrack
     {

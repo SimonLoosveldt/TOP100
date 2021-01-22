@@ -1,23 +1,22 @@
-﻿using TopHundred.Models;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using TopHundred.Core.Entities;
+using TopHundred.Core.Exceptions;
 
 namespace TopHundred.Core
 {
-    public class ListEntryController
+    public class ListEntryRepository
     {
         private readonly TopContext db;
 
-        public ListEntryController()
+        public ListEntryRepository()
         {
             this.db = new TopContext();
             db.SaveChanges();
         }
 
-        public ListEntryController(TopContext topContext)
+        public ListEntryRepository(TopContext topContext)
         {
             this.db = topContext;
             db.SaveChanges();
@@ -37,7 +36,7 @@ namespace TopHundred.Core
 
         public IEnumerable<IListEntry> GetAllListEntries()
         {
-            return db.ListEntries.AsEnumerable();
+            return db.ListEntries.AsEnumerable() ?? throw new ListEntryNotFoundException("No listentries in database.");
         }
 
         public void DeleteListEntry(User user, int points)
@@ -48,7 +47,7 @@ namespace TopHundred.Core
 
         public IListEntry GetListEntryById(int id)
         {
-            return db.ListEntries.Where(x => x.Id == id).FirstOrDefault();
+            return db.ListEntries.Where(x => x.Id == id).FirstOrDefault() ?? throw new ListEntryNotFoundException($"No listentry with id:{id} in database.");
         }
 
         public bool SearchIfListEntryExist(User loggedInUser, int points)

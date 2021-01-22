@@ -6,7 +6,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace TopHundred.Models
+namespace TopHundred.Core.Entities
 {
     public class Artist : IArtist
     {

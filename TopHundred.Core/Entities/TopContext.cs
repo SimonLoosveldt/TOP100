@@ -1,6 +1,6 @@
 ﻿using Microsoft.EntityFrameworkCore;
 
-namespace TopHundred.Models
+namespace TopHundred.Core.Entities
 {
     public class TopContext : DbContext
     {

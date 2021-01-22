@@ -1,6 +1,6 @@
 ﻿using Microsoft.AspNetCore.Components;
+using TopHundred.Core.Entities;
 using TopHundred.Core.Services;
-using TopHundred.Models;
 
 namespace TopHundred.Views.Shared
 {

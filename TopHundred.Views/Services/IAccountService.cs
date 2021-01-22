@@ -1,4 +1,4 @@
-﻿using TopHundred.Models;
+﻿using TopHundred.Core.Entities;
 
 namespace TopHundred.Views.Services
 {

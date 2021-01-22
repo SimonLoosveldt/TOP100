@@ -1,9 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using TopHundred.Models;
+﻿using TopHundred.Core.Entities;
 
 namespace TopHundred.Core.Services
 {

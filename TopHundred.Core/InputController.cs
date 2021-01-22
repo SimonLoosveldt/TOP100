@@ -1,27 +1,25 @@
-﻿using TopHundred.Models;
-using Microsoft.EntityFrameworkCore;
+﻿using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using TopHundred.Models.ViewModels;
+using TopHundred.Core.ViewModels;
+using TopHundred.Core.Entities;
 
 namespace TopHundred.Core
 {
     public class InputController
     {
         private readonly TopContext db;
-        private readonly TrackController trackController;
-        private readonly ArtistController artistController;
-        private readonly ListEntryController listEntryController;
+        private readonly TrackRepository trackController;
+        private readonly ArtistRepository artistController;
+        private readonly ListEntryRepository listEntryController;
 
         public InputController()
         {
             this.db = new TopContext();
-            this.trackController = new TrackController();
-            this.artistController = new ArtistController();
-            this.listEntryController = new ListEntryController();
+            this.trackController = new TrackRepository();
+            this.artistController = new ArtistRepository();
+            this.listEntryController = new ListEntryRepository();
             db.SaveChanges();
         }
 

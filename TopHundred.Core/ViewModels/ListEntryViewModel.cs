@@ -1,11 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Diagnostics;
-using System.Linq;
+﻿using System.Diagnostics;
 using System.Runtime.CompilerServices;
-using System.Threading.Tasks;
 
-namespace TopHundred.Models.ViewModels
+namespace TopHundred.Core.ViewModels
 {
     public class ListEntryViewModel : BaseNotifyPropertyChanged
     {

@@ -11,7 +11,7 @@ namespace TopHundred.Views.Pages
     public partial class Login
     {
         // Private
-        private UserController userController { get; set; }
+        private UserRepository userController { get; set; }
 
         public Login()
         {
@@ -39,7 +39,7 @@ namespace TopHundred.Views.Pages
         // Protected
         protected override void OnInitialized()
         {
-            userController = new UserController();
+            userController = new UserRepository();
         }
 
         // Private

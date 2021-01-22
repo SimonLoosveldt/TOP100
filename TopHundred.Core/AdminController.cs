@@ -1,5 +1,5 @@
-﻿using TopHundred.Models;
-using System.Linq;
+﻿using System.Linq;
+using TopHundred.Core.Entities;
 
 namespace TopHundred.Core
 {

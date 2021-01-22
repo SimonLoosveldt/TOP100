@@ -29,7 +29,6 @@
 
   <ItemGroup>
     <ProjectReference Include="..\TopHundred.Core\TopHundred.Core.csproj" />
-    <ProjectReference Include="..\TopHundred.Models\TopHundred.Models.csproj" />
   </ItemGroup>
 
 </Project>

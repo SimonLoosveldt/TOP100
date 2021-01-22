@@ -6,16 +6,23 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace TopHundred.Models
+namespace TopHundred.Core.Entities
 {
     public class ReleaseDateInfo : IReleaseDateInfo
     {
 
         public ReleaseDateInfo()
         {
-
+            ReleaseDate = string.Empty;
+            ReleaseDatePrecision = string.Empty;
         }
 
+        public ReleaseDateInfo(string releaseDate, string releaseDatePrecision, Track track)
+        {
+            ReleaseDate = releaseDate;
+            ReleaseDatePrecision = releaseDatePrecision;
+            Track = track;
+        }
 
         [Key]
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]

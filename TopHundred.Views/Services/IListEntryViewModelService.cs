@@ -1,6 +1,6 @@
-﻿using TopHundred.Models;
-using System.Collections.Generic;
-using TopHundred.Models.ViewModels;
+﻿using System.Collections.Generic;
+using TopHundred.Core.Entities;
+using TopHundred.Core.ViewModels;
 
 namespace TopHundred.Views.Services
 {

@@ -5,7 +5,7 @@ using System.Linq;
 using System.Runtime.CompilerServices;
 using System.Threading.Tasks;
 
-namespace TopHundred.Models.ViewModels
+namespace TopHundred.Core.ViewModels
 {
     public abstract class BaseNotifyPropertyChanged : INotifyPropertyChanged
     {

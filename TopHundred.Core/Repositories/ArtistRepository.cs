@@ -1,21 +1,20 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
+using TopHundred.Core.Entities;
 using TopHundred.Core.Exceptions;
-using TopHundred.Models;
 
 namespace TopHundred.Core
 {
-    public class ArtistController
+    public class ArtistRepository
     {
         private readonly TopContext db;
 
-        public ArtistController()
+        public ArtistRepository()
         {
             this.db = new TopContext();
         }
 
-        public ArtistController(TopContext topContext)
+        public ArtistRepository(TopContext topContext)
         {
             this.db = topContext;
             db.SaveChanges();
@@ -36,12 +35,12 @@ namespace TopHundred.Core
 
         public IEnumerable<IArtist> GetAllArtists()
         {
-            return db.Artists.AsEnumerable();
+            return db.Artists.AsEnumerable() ?? throw new ArtistNotFoundException("No artists in database.");
         }
 
         public IArtist GetArtistById(int id)
         {
-            return db.Artists.Where(x => x.Id == id).FirstOrDefault();
+            return db.Artists.Where(x => x.Id == id).FirstOrDefault() ?? throw new ArtistNotFoundException($"No artist with id:{id} in database.");
         }
 
         public IEnumerable<ITrack> GetTracksFromArtistById(int id)
@@ -53,6 +52,5 @@ namespace TopHundred.Core
         {
             return db.Artists.Any(x => x.Name == artist) ? db.Artists.Single(x => x.Name == artist) : AddNewArtist(artist);
         }
-
     }
 }

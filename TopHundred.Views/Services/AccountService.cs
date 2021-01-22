@@ -1,10 +1,4 @@
-﻿using TopHundred.Models;
-using Microsoft.AspNetCore.Components;
-using System;
-using System.Collections.Generic;
-using System.ComponentModel.Design;
-using System.Linq;
-using System.Threading.Tasks;
+﻿using TopHundred.Core.Entities;
 
 namespace TopHundred.Views.Services
 {
