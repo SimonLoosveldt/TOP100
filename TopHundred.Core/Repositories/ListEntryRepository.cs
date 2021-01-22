@@ -10,12 +10,6 @@ namespace TopHundred.Core
     {
         private readonly TopContext db;
 
-        public ListEntryRepository()
-        {
-            this.db = new TopContext();
-            db.SaveChanges();
-        }
-
         public ListEntryRepository(TopContext topContext)
         {
             this.db = topContext;

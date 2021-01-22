@@ -5,21 +5,21 @@ using System.Linq;
 using TopHundred.Core.ViewModels;
 using TopHundred.Core.Entities;
 
-namespace TopHundred.Core
+namespace TopHundred.Core.Controllers
 {
     public class InputController
     {
         private readonly TopContext db;
-        private readonly TrackRepository trackController;
-        private readonly ArtistRepository artistController;
-        private readonly ListEntryRepository listEntryController;
+        private readonly TrackRepository trackRepository;
+        private readonly ArtistRepository artistRepository;
+        private readonly ListEntryRepository listEntryRepository;
 
-        public InputController()
+        public InputController(TopContext topContext)
         {
-            this.db = new TopContext();
-            this.trackController = new TrackRepository();
-            this.artistController = new ArtistRepository();
-            this.listEntryController = new ListEntryRepository();
+            this.db = topContext;
+            this.trackRepository = new TrackRepository(db);
+            this.artistRepository = new ArtistRepository(db);
+            this.listEntryRepository = new ListEntryRepository(db);
             db.SaveChanges();
         }
 
@@ -29,23 +29,23 @@ namespace TopHundred.Core
             {
                 if (string.IsNullOrEmpty(listEntry.Artist) && string.IsNullOrEmpty(listEntry.Title))
                 {
-                    if (listEntryController.SearchIfListEntryExist(user, listEntry.Points))
+                    if (listEntryRepository.SearchIfListEntryExist(user, listEntry.Points))
                     {
-                        listEntryController.DeleteListEntry(user, listEntry.Points);
+                        listEntryRepository.DeleteListEntry(user, listEntry.Points);
                     }
                 }
                 else
                 {
-                    var retrievedArtist = artistController.SearchIfExistElseCreateArtist(listEntry.Artist);
-                    var retrievedTrack = trackController.SearchIfExistElseCreateTrack(listEntry.Title, retrievedArtist);
+                    var retrievedArtist = artistRepository.SearchIfExistElseCreateArtist(listEntry.Artist);
+                    var retrievedTrack = trackRepository.SearchIfExistElseCreateTrack(listEntry.Title, retrievedArtist);
 
-                    if (listEntryController.SearchIfListEntryExist(user, listEntry.Points))
+                    if (listEntryRepository.SearchIfListEntryExist(user, listEntry.Points))
                     {
-                        listEntryController.ChangeListEntryParams(user, retrievedTrack, listEntry.Points);
+                        listEntryRepository.ChangeListEntryParams(user, retrievedTrack, listEntry.Points);
                     }
                     else
                     {
-                        listEntryController.AddNewListEntry(user, retrievedTrack, listEntry.Points);
+                        listEntryRepository.AddNewListEntry(user, retrievedTrack, listEntry.Points);
                     }
                 }
             }

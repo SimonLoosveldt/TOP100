@@ -1,6 +1,6 @@
 ﻿using TopHundred.Core.Entities;
 
-namespace TopHundred.Views.Services
+namespace TopHundred.Core.Services
 {
     public interface IAccountService
     {

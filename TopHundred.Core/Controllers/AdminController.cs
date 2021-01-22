@@ -1,16 +1,16 @@
 ﻿using System.Linq;
 using TopHundred.Core.Entities;
 
-namespace TopHundred.Core
+namespace TopHundred.Core.Controllers
 {
     public class AdminController
     {
 
-        private readonly TopContext db = new TopContext();
+        private readonly TopContext db;
 
-        public AdminController()
+        public AdminController(TopContext topContext)
         {
-
+            this.db = topContext;
         }
 
         public int GetCountSubmissionEntries()

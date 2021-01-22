@@ -1,5 +1,3 @@
-@using System.Reflection
-@using TopHundred.Core
 
 <Router AppAssembly="@typeof(Program).Assembly">
     <Found Context="routeData">
@@ -11,11 +9,3 @@
         </LayoutView>
     </NotFound>
 </Router>
-
-@code {
-    public List<Assembly> _extraAssemblies = new List<Assembly>
-    {
-        typeof(InputController).Assembly,
-        typeof(UserController).Assembly
-    };
-}

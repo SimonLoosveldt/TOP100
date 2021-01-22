@@ -1,10 +1,11 @@
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
+using TopHundred.Core.Entities;
 using TopHundred.Core.Services;
-using TopHundred.Views.Services;
 
 namespace TopHundred.Views
 {
@@ -23,6 +24,7 @@ namespace TopHundred.Views
         {
             services.AddRazorPages();
             services.AddServerSideBlazor();
+            services.AddDbContext<TopContext>(options => options.UseSqlServer(Configuration.GetConnectionString("TOP-DB")));
             services.AddSingleton<IAccountService, AccountService>();
             services.AddSingleton<IUserService, UserService>();
             services.AddSingleton<IErrorService, ErrorService>();

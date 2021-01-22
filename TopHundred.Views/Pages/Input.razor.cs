@@ -1,21 +1,23 @@
 ﻿using System;
 using System.Collections.Generic;
 using TopHundred.Core.Services;
-using TopHundred.Core;
 using TopHundred.Core.ViewModels;
 using System.Threading;
 using Microsoft.AspNetCore.Components;
+using TopHundred.Core.Controllers;
+using TopHundred.Core.Entities;
 
 namespace TopHundred.Views.Pages
 {
     public partial class Input
     {
+        private readonly TopContext _topContext;
         private static InputController inputController;
         private readonly string loginPath = "/login";
 
-        public Input()
+        public Input(TopContext topContext)
         {
-
+            _topContext = topContext;
         }
 
         // Parameters
@@ -42,7 +44,7 @@ namespace TopHundred.Views.Pages
                 HandleNotLoggedIn();
             }
 
-            inputController = new InputController();
+            inputController = new InputController(_topContext);
 
             var boundaries = Param.Split('_');
 

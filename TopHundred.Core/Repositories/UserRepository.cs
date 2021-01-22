@@ -11,10 +11,6 @@ namespace TopHundred.Core
     {
         private readonly TopContext db;
 
-        public UserRepository()
-        {
-            this.db = new TopContext();
-        }
         public UserRepository(TopContext topContext)
         {
             this.db = topContext;

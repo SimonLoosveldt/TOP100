@@ -1,21 +1,22 @@
 ﻿using System.Threading.Tasks;
-using TopHundred.Views.Services;
+using Microsoft.Extensions.DependencyInjection;
 using TopHundred.Core.Services;
 using TopHundred.Core.Exceptions;
 using TopHundred.Core;
 using Microsoft.AspNetCore.Components;
 using Microsoft.JSInterop;
+using TopHundred.Core.Entities;
 
 namespace TopHundred.Views.Pages
 {
     public partial class Login
     {
         // Private
-        private UserRepository userController { get; set; }
+        private readonly TopContext _topContext;
 
-        public Login()
+        public Login(TopContext topContext)
         {
-
+            _topContext = topContext;
         }
 
         // Services
@@ -35,11 +36,12 @@ namespace TopHundred.Views.Pages
         public string LoginButtonLabel { get; set; } = "LOGIN";
         public string InputFirstName { get; set; } = string.Empty;
         public string InputLastname { get; set; } = string.Empty;
+        private UserRepository UserRepository { get; set; }
 
         // Protected
         protected override void OnInitialized()
         {
-            userController = new UserRepository();
+            UserRepository = new UserRepository(_topContext);
         }
 
         // Private
@@ -54,7 +56,7 @@ namespace TopHundred.Views.Pages
 
                 try
                 {
-                    UserService.Login(userController.GetUserByName(InputFirstName, InputLastname));
+                    UserService.Login(UserRepository.GetUserByName(InputFirstName, InputLastname));
                     Redirect();
                 }
                 catch (UserNotFoundException)

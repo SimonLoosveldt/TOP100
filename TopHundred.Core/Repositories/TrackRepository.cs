@@ -11,12 +11,6 @@ namespace TopHundred.Core
     {
         private readonly TopContext db;
 
-        public TrackRepository()
-        {
-            this.db = new TopContext();
-            db.SaveChanges();
-        }
-
         public TrackRepository(TopContext topContext)
         {
             this.db = topContext;

@@ -9,15 +9,9 @@ namespace TopHundred.Core
     {
         private readonly TopContext db;
 
-        public ArtistRepository()
-        {
-            this.db = new TopContext();
-        }
-
         public ArtistRepository(TopContext topContext)
         {
             this.db = topContext;
-            db.SaveChanges();
         }
 
         public void AddArtist(Artist artist)

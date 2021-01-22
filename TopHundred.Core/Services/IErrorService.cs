@@ -1,4 +1,4 @@
-﻿namespace TopHundred.Views.Services
+﻿namespace TopHundred.Core.Services
 {
     public interface IErrorService
     {

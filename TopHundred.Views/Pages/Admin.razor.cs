@@ -1,12 +1,15 @@
-﻿using TopHundred.Core;
+﻿using TopHundred.Core.Controllers;
+using TopHundred.Core.Entities;
 
 namespace TopHundred.Views.Pages
 {
     public partial class Admin
     {
-        public Admin()
-        {
+        private readonly TopContext _topContext;
 
+        public Admin(TopContext topContext)
+        {
+            _topContext = topContext;
         }
 
         public string pageTitle { get; set; } = "ADMINPANEL";
@@ -18,7 +21,7 @@ namespace TopHundred.Views.Pages
 
         protected override void OnInitialized()
         {
-            var adminController = new AdminController();
+            var adminController = new AdminController(_topContext);
 
             SubmissionEntries = adminController.GetCountSubmissionEntries();
             CompletedEntries = adminController.GetCountCompletedEntries();
