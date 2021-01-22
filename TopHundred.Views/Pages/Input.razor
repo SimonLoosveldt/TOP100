@@ -1,5 +1,10 @@
 ﻿@page "/input/{param}"
-
+@using TopHundred.Controllers.Services
+@using TopHundred.Controllers
+@using TopHundred.Models.ViewModels
+@using System.Threading
+@inject NavigationManager NavigationManager
+@inject IUserService UserService
 <div class="sidebar">
     <SideNav />
 </div>
