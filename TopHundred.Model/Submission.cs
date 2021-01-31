@@ -1,10 +1,24 @@
 ﻿using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
-namespace TopHundred.Core.Entities
+namespace TopHundred.Model
 {
-    public class ListEntry
-    {        
+    public class Submission
+    {
+        public Submission()
+        {
+            Track = new Track();
+            User = new User();
+        }
+
+        public Submission(User user, Track track, int points, int year)
+        {
+            User = user;
+            Track = track;
+            Points = points;
+            Year = year;
+        }
+
         [Key]
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public int Id { get; set; }

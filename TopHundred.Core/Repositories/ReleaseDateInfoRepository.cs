@@ -24,7 +24,12 @@ namespace TopHundred.Core.Repositories
 
         public void AddNewReleaseDateInfo(string releaseDate, string releaseDatePrecision, Track track)
         {
-            db.ReleaseDateInfos.Add(new ReleaseDateInfo(releaseDate, releaseDatePrecision, track));
+            db.ReleaseDateInfos.Add(new ReleaseDateInfo
+            {
+                ReleaseDate = releaseDate,
+                ReleaseDatePrecision = releaseDatePrecision,
+                Track = track,
+            });
             db.SaveChanges();
         }
 

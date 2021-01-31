@@ -27,7 +27,11 @@ namespace TopHundred.Views
         {
             services.AddRazorPages();
             services.AddServerSideBlazor();
-            services.AddDbContext<TopContext>(options => options.UseSqlServer(Configuration.GetConnectionString("TOP-DB")));
+            services.AddDbContext<TopContext>(options =>
+            {
+                options.UseSqlServer(Configuration.GetConnectionString("TOP-DB"));
+                options.EnableSensitiveDataLogging();
+            });
             services.AddSingleton<IAccountService, AccountService>();
             services.AddSingleton<UserService, UserService>();
             services.AddSingleton<IErrorService, ErrorService>();            

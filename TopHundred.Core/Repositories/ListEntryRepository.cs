@@ -21,7 +21,12 @@ namespace TopHundred.Core.Repositories
 
         public override IQueryable<ListEntry> GetAll()
         {
-            return base.GetAll().Include(x => x.User).Include(x => x.Track);
-        }
+            var entries = _db.ListEntries
+                .Include(x => x.User)
+                .Include(x => x.Track)
+                    .ThenInclude(x => x.Artist)
+                .ToList();
+            return entries.AsQueryable();
+        }     
     }
 }

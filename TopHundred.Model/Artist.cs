@@ -2,10 +2,22 @@
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
-namespace TopHundred.Core.Entities
+namespace TopHundred.Model
 {
     public class Artist
     {
+        public Artist()
+        {
+            Name = string.Empty;
+            Genre = string.Empty;
+            SpotifyUri = string.Empty;
+            Tracks = new List<Track>();
+        }
+        public Artist (string name) : this()
+        {
+            Name = name;
+        }
+
         [Key]
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public int Id { get; set; }

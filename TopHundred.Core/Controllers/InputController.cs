@@ -72,7 +72,11 @@ namespace TopHundred.Core.Controllers
             }
             catch (TrackNotFoundException)
             {
-                track = new Track(artist, title);
+                track = new Track
+                {
+                    Artist = artist,
+                    Title = title,                    
+                };
                 _trackRepository.Add(track);
             }
             return track;
@@ -87,7 +91,10 @@ namespace TopHundred.Core.Controllers
             }
             catch (ArtistNotFoundException)
             {
-                artist = new Artist(name);
+                artist = new Artist()
+                {
+                    Name = name,
+                };
                 _artistRepository.Add(artist);
             }
 
@@ -103,7 +110,13 @@ namespace TopHundred.Core.Controllers
             }
             catch (ListEntryNotFoundException)
             {
-                listEntry = new ListEntry(user, track, points, DateTime.Today.Year);
+                listEntry = new ListEntry
+                {
+                    Points = points,
+                    Track = track,
+                    User = user,
+                    Year = 0,
+                };
                 _listEntryRepository.Add(listEntry);
             }
 

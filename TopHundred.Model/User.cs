@@ -2,22 +2,17 @@
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
-namespace TopHundred.Core.Entities
+namespace TopHundred.Model
 {
     public class User
-    {
-        [Key]
-        [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
+    {       
         public int Id { get; set; }
-        [Required]
         public string Firstname { get; set; }
-        [Required]
         public string Lastname { get; set; }
-        [Required]
         public string SpotifyUri { get; set; }
         public bool Completed { get; set; }
 
-        public IEnumerable<ListEntry> ListEntries { get; set; }
+        public List<Submission> Submissions { get; } = new List<Submission>();
 
         public override string ToString()
         {

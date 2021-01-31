@@ -7,6 +7,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TopHundred.Views", "TopHund
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TopHundred.Core", "..\TopHundred.Core\TopHundred.Core.csproj", "{3D761971-EEDD-4FC6-B826-62189FD57093}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TopHundred.Model", "..\TopHundred.Model\TopHundred.Model.csproj", "{2930D3C0-0046-49E9-BF18-8EFD5C081C1D}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -21,6 +23,10 @@ Global
 		{3D761971-EEDD-4FC6-B826-62189FD57093}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{3D761971-EEDD-4FC6-B826-62189FD57093}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{3D761971-EEDD-4FC6-B826-62189FD57093}.Release|Any CPU.Build.0 = Release|Any CPU
+		{2930D3C0-0046-49E9-BF18-8EFD5C081C1D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{2930D3C0-0046-49E9-BF18-8EFD5C081C1D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{2930D3C0-0046-49E9-BF18-8EFD5C081C1D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{2930D3C0-0046-49E9-BF18-8EFD5C081C1D}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
