@@ -1,54 +1,66 @@
-﻿using System.Diagnostics;
+﻿using SpotifyAPI.Web;
+using System.Diagnostics;
+using System.Linq;
 using System.Runtime.CompilerServices;
+using TopHundred.Core.Controllers;
 
 namespace TopHundred.Core.ViewModels
 {
     public class ListEntryViewModel : BaseNotifyPropertyChanged
     {
-        private string _artist, _title;
+        private ArtistViewModel _artist;
+        private TrackViewModel _track;
         
         public ListEntryViewModel()
         {
-            _artist = string.Empty;
-            _title = string.Empty;
+            _artist = null;
+            _track = null;
         }
-        public ListEntryViewModel(int points) : this(points, string.Empty, string.Empty)
+        public ListEntryViewModel(int points) : this(points, null, null)
         {
         }
-        public ListEntryViewModel(int points, string artist, string title)
+        public ListEntryViewModel(int points, ArtistViewModel artist, TrackViewModel track)
         {
             Points = points;
             _artist = artist;
-            _title = title;
+            _track = track;
         }
 
         public int Points { get; set; }
-        public string Artist 
+        public ArtistViewModel ArtistViewModel 
         {
             get => _artist;
             set => SetProperty(ref _artist, value); 
         }
-        public string Title 
+        public TrackViewModel TrackViewModel 
         { 
-            get => _title; 
-            set => SetProperty(ref _title, value); 
+            get => _track; 
+            set => SetProperty(ref _track, value); 
         }
 
         public override string ToString()
         {
-            return $"{Points}: {Artist} - {Title}";
+            return $"{Points}: {ArtistViewModel.Artist.Name} - {TrackViewModel.Track.Title}";
         }
+
         public bool IsEmpty()
         {
-            return string.IsNullOrEmpty(_artist) && string.IsNullOrEmpty(_title);
+            return ArtistViewModel == null && TrackViewModel == null;
         }
 
         protected override void OnPropertyChanged([CallerMemberName] string propertyName = null)
         {
             switch(propertyName)
             {
-                case nameof(Artist):
-                case nameof(Title):
+                case nameof(ArtistViewModel):
+                case nameof(TrackViewModel):
+                    if(TrackViewModel == null)
+                    {
+                        if (ArtistViewModel == null || ArtistViewModel.Artist.Name != TrackViewModel.Track.Artist.Name)
+                        {
+                            ArtistViewModel = new ArtistViewModel(TrackViewModel.Track.Artist);
+                        }
+                    }                        
                     Debug.WriteLine(this);
                     break;
             }

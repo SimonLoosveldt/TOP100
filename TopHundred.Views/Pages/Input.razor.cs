@@ -5,7 +5,6 @@ using TopHundred.Core.ViewModels;
 using System.Threading;
 using Microsoft.AspNetCore.Components;
 using TopHundred.Core.Controllers;
-using TopHundred.Core.Entities;
 
 namespace TopHundred.Views.Pages
 {
@@ -24,6 +23,8 @@ namespace TopHundred.Views.Pages
         public NavigationManager NavigationManager { get; set; }
         [Inject]
         public InputController InputController { get; set; }
+        [Inject]
+        public ISpotifyService SpotifyService { get; set; }
 
         // Properties
         public string PageTitle { get; set; } = "TOP100";
@@ -69,5 +70,7 @@ namespace TopHundred.Views.Pages
             Console.WriteLine($"{DateTime.Now.ToString("HH:mm:ss.fff")} --> Creating timer...");
             //var stateTimer = new Timer(updateService.Update, autoEvent, 30000, 60000);
         }
+
+       
     }
 }

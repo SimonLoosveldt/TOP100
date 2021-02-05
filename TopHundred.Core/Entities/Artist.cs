@@ -14,6 +14,7 @@ namespace TopHundred.Core.Entities
         public string Genre { get; set; }
         public string SpotifyUri { get; set; }
         public int Popularity { get; set; }
+        public string ImageUrl { get; set; }
 
         public IEnumerable<Track> Tracks { get; set; }
 

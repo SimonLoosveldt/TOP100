@@ -16,6 +16,7 @@ namespace TopHundred.Core.Entities
         public string SpotifyUri { get; set; }
         [Required]
         public bool ManualEntry { get; set; }
+        public string ImageUrl { get; set; }
 
 
         public IEnumerable<ListEntry> ListEntries { get; set; }

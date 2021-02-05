@@ -6,6 +6,8 @@ using TopHundred.Core.ViewModels;
 using TopHundred.Core.Entities;
 using TopHundred.Core.Repositories;
 using TopHundred.Core.Exceptions;
+using TopHundred.Core.Services;
+using SpotifyAPI.Web;
 
 namespace TopHundred.Core.Controllers
 {
@@ -14,12 +16,14 @@ namespace TopHundred.Core.Controllers
         private readonly ITrackRepository _trackRepository;
         private readonly IArtistRepository _artistRepository;
         private readonly IListEntryRepository _listEntryRepository;
+        private readonly ISpotifyService _client;
 
-        public InputController(IArtistRepository artistRepository, ITrackRepository trackRepository, IListEntryRepository listEntryRepository)
+        public InputController(IArtistRepository artistRepository, ITrackRepository trackRepository, IListEntryRepository listEntryRepository, ISpotifyService spotifyService)
         {
             _artistRepository = artistRepository;
             _trackRepository = trackRepository;
             _listEntryRepository = listEntryRepository;
+            _client = spotifyService;
         }
 
         public void Sync(User user, List<ListEntryViewModel> userListEntries)
@@ -36,8 +40,8 @@ namespace TopHundred.Core.Controllers
                 }
                 else
                 {
-                    var artist = TryFindArtist(listEntry.Artist);
-                    var track = TryFindTrack(artist, listEntry.Title);
+                    var artist = TryFindArtist(listEntry.ArtistViewModel);
+                    var track = TryFindTrack(artist,  listEntry.TrackViewModel);
                     CreateListEntry(user, track, listEntry.Points);                    
                 }
             }
@@ -52,7 +56,7 @@ namespace TopHundred.Core.Controllers
                 try
                 {
                     var track = entries.Single(x => x.Points == points).Track;
-                    previousDataSample.Add(new ListEntryViewModel(points, track.Artist.Name, track.Title));
+                    previousDataSample.Add(new ListEntryViewModel(points, new ArtistViewModel(track.Artist), new TrackViewModel(track)));
                 }
                 catch (InvalidOperationException)
                 {
@@ -81,19 +85,19 @@ namespace TopHundred.Core.Controllers
             }
             return track;
         }
-        private Artist TryFindArtist(string name)
+        private Artist TryFindArtist(ArtistViewModel artistViewModel)
         {
             Artist artist;
             try
             {
-                artist = _artistRepository.GetByName(name);
+                artist = _artistRepository.GetByName(artistViewModel.Artist.Name);
 
             }
             catch (ArtistNotFoundException)
             {
                 artist = new Artist()
                 {
-                    Name = name,
+                    Name = artistViewModel.Artist,
                 };
                 _artistRepository.Add(artist);
             }

@@ -10,10 +10,14 @@ namespace TopHundred.Core.Entities
         public DbSet<Track> Tracks { get; set; }
         public DbSet<User> Users { get; set; }
 
-        public TopContext(DbContextOptions options) : base(options)
-        {
+        //public TopContext()
+        //{
 
-        }
+        //}
+        //public TopContext(DbContextOptions options) : base(options)
+        //{
+
+        //}
         
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {

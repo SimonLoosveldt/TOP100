@@ -34,7 +34,11 @@ namespace TopHundred.Views
             });
             services.AddSingleton<IAccountService, AccountService>();
             services.AddSingleton<UserService, UserService>();
-            services.AddSingleton<IErrorService, ErrorService>();            
+            services.AddSingleton<IErrorService, ErrorService>();
+            services.AddSingleton<ISpotifyService, SpotifyService>(sp =>
+            {
+                return new SpotifyService(Configuration.GetConnectionString("ClientID"), Configuration.GetConnectionString("ClientSecret"));
+            });
             services.AddScoped<IUserRepository, UserRepository>();
             services.AddScoped<ITrackRepository, TrackRepository>();
             services.AddScoped<IArtistRepository, ArtistRepository>();

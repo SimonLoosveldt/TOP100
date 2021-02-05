@@ -1,4 +1,5 @@
 ﻿@page "/input/{param}"
+@using LoreSoft.Blazor.Controls
 
 <div class="sidebar">
     <SideNav />
@@ -28,13 +29,34 @@
                     </div>
                     <div class="inputFields">
 
-                        <span id="input_artist"><input type="text" placeholder="ARTIST" @bind="@currentListEntry.Artist"></span>
+                        <span id="input_artist"><input type="text" placeholder="ARTIST" @bind="@currentListEntry.ArtistViewModel.Artist.Name"></span>
 
 
-                        <span id="input_title"><input type="text" placeholder="TITLE" @bind="@currentListEntry.Title"></span>
+                        <span id="input_title"><input type="text" placeholder="TITLE" @bind="@currentListEntry.TrackViewModel.Track.Title"></span>
 
                     </div>
                 </div>
+
+                <Typeahead SearchMethod="@SearchArtist"
+                           @bind-Value="@currentListEntry.ArtistViewModel"
+                           Placeholder="Artist..."
+                           MinimumLength="2">
+                    <SelectedTemplate Context="artistViewModel">
+                        @artistViewModel.Artist.Name
+                    </SelectedTemplate>
+                    <ResultTemplate Context="artistViewModel">
+                        @{
+                            var artistImageUrl = artistViewModel.Artist.ImageUrl ?? "img/music_black_48dp.png";
+                        }
+                        <div class="github-repository clearfix">
+                            <div class="github-avatar"><img src="@artistImageUrl"></div>
+                            <div class="github-meta">
+                                <div class="github-title">@artistViewModel.Artist.Name</div>
+                                <div class="github-description">@artistViewModel.Artist.SpotifyUri</div>
+                            </div>
+                        </div>
+                    </ResultTemplate>
+                </Typeahead>
             }
 
             <input type="button" @bind="SaveButtonLabel" @onclick="UpdateDatabase" />
